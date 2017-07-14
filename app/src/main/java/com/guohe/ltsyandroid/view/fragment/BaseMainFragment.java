@@ -1,5 +1,7 @@
 package com.guohe.ltsyandroid.view.fragment;
 
+import android.view.View;
+
 import com.guohe.ltsyandroid.view.base.BaseFragment;
 
 /**
@@ -7,4 +9,6 @@ import com.guohe.ltsyandroid.view.base.BaseFragment;
  */
 
 public abstract class BaseMainFragment extends BaseFragment {
+
+    public abstract void attachActionBarView(View actionbarView);
 }

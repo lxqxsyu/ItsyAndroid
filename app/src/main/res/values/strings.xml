@@ -13,4 +13,7 @@
     <string name="main_menu_text4">街景</string>
     <string name="main_menu_text5">风光</string>
     <string name="main_menu_text6">儿童</string>
+    <string name="main_menu_text21">全部</string>
+    <string name="main_menu_text22">附近</string>
+    <string name="main_menu_text23">已关注</string>
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dip">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="5dip"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_dynamic_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/test_image1"/>
+
+        <TextView
+            android:layout_below="@id/item_dynamic_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip"
+            android:lineSpacingMultiplier="1.2"
+            android:textSize="14sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="我下午下班时候拍的，美不美，傍晚的西安，有一种外星人来的感觉，有木有"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="22dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:layout_alignBottom="@+id/item_dynamic_imageview"
+            android:background="#55000000">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/secondary_text_dark"
+                android:text="作者：高原黑娃"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                android:textColor="@android:color/secondary_text_dark"
+                android:text="地点：西安钟楼"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
