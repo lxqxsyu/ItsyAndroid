@@ -1,6 +1,16 @@
 <resources>
-    <string name="app_name">ltsyAndroid</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">旅途摄影</string>
+
+
+    <string name="main_tab_text1">地图</string>
+    <string name="main_tab_text2">动态</string>
+    <string name="main_tab_text3">榜单</string>
+    <string name="main_tab_text4">我的</string>
+
+    <string name="main_menu_text1">旅行</string>
+    <string name="main_menu_text2">人物</string>
+    <string name="main_menu_text3">生活</string>
+    <string name="main_menu_text4">街景</string>
+    <string name="main_menu_text5">风光</string>
+    <string name="main_menu_text6">儿童</string>
 </resources>
