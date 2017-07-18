@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dip"
+    android:layout_marginBottom="2dip"
+    app:cardBackgroundColor="@color/cardview_dark_background"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="20dip">
+        
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_author_wallpaper"
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            app:placeholderImage="@drawable/default_placeholder"
+            app:actualImageScaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/item_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_below="@id/item_author_wallpaper"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dip"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="用户昵称"/>
+
+        <TextView
+            android:id="@+id/item_author_descript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_below="@id/item_author_name"
+            android:layout_marginTop="5dip"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="这里是用户的一些介绍信息"/>
+
+        <Button
+            android:id="@+id/item_attention_button"
+            android:layout_width="80dip"
+            android:layout_height="20dip"
+            android:text="关注"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dip"
+            android:background="@color/colorSecondary"
+            android:layout_below="@id/item_author_descript"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_author_head"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginTop="175dip"
+            android:layout_centerHorizontal="true"
+            app:placeholderImage="@drawable/default_placeholder"
+            app:actualImageScaleType="centerCrop" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

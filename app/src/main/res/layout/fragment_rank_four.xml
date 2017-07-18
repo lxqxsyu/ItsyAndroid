@@ -2,6 +2,7 @@
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rank_fragment4_refresh"
+    android:background="@color/app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

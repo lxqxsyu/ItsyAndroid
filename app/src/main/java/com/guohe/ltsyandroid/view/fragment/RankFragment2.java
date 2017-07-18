@@ -1,13 +1,18 @@
 package com.guohe.ltsyandroid.view.fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cundong.recyclerview.HeaderAndFooterRecyclerViewAdapter;
+import com.cundong.recyclerview.RecyclerViewUtils;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
+import com.guohe.ltsyandroid.view.adapter.PhotoDynamicAdapter;
 import com.guohe.ltsyandroid.view.base.BaseFragment;
+import com.wou.commonutils.DensityUtil;
 
 import java.util.List;
 
@@ -18,6 +23,7 @@ import java.util.List;
 public class RankFragment2 extends BaseFragment{
 
     private RecyclerView mRecyclerView;
+    private PhotoDynamicAdapter mAdapter;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -48,30 +54,18 @@ public class RankFragment2 extends BaseFragment{
             }
         });
         mRecyclerView = getView(R.id.rank2_recyclerview);
+        bindView();
     }
 
-    class Rank2Adapter extends RecyclerView.Adapter<Rank2ViewHolder>{
-
-        @Override
-        public Rank2ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return null;
-        }
-
-        @Override
-        public void onBindViewHolder(Rank2ViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return 0;
-        }
-    }
-
-    class Rank2ViewHolder extends RecyclerView.ViewHolder{
-
-        public Rank2ViewHolder(View itemView) {
-            super(itemView);
-        }
+    private void bindView() {
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mAdapter = new PhotoDynamicAdapter(this.getContext());
+        HeaderAndFooterRecyclerViewAdapter headAdapter = new HeaderAndFooterRecyclerViewAdapter(mAdapter);
+        mRecyclerView.setAdapter(headAdapter);
+        View space = new View(this.getActivity());
+        space.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                DensityUtil.dip2px(this.getActivity(), 5)));
+        RecyclerViewUtils.setHeaderView(mRecyclerView, space);
     }
 }
