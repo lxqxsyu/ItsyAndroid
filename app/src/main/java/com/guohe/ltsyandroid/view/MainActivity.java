@@ -95,7 +95,11 @@ public class MainActivity extends BaseActivity {
         if(mCurrentIndex == currentIndex) return;
         mCurrentIndex = currentIndex;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.hide(mCurrentFragment);
+        for(int i = 0; i < mFragments.size(); i++) {
+            if(i != currentIndex) {
+                fragmentTransaction.hide(mFragments.get(i));
+            }
+        }
         if(!mFragments.containsKey(mCurrentIndex)){
             fragmentTransaction.add(R.id.fragment_container, getFragmentInstance(), String.valueOf(mCurrentIndex));
         }else{

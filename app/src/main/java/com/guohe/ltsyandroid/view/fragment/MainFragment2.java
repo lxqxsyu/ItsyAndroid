@@ -10,6 +10,7 @@ import com.cundong.recyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.cundong.recyclerview.RecyclerViewUtils;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
+import com.guohe.ltsyandroid.view.PhotoDetailActivity;
 import com.wou.commonutils.DensityUtil;
 
 import java.util.List;
@@ -76,7 +77,12 @@ public class MainFragment2 extends BaseMainFragment {
 
         @Override
         public void onBindViewHolder(DynamicViewHolder holder, int position) {
-
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PhotoDetailActivity.startActivity(MainFragment2.this.getContext());
+                }
+            });
         }
 
         @Override
@@ -86,9 +92,10 @@ public class MainFragment2 extends BaseMainFragment {
     }
 
     class DynamicViewHolder extends RecyclerView.ViewHolder{
-
+        private View itemView;
         public DynamicViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
         }
     }
 }

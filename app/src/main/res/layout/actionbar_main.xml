@@ -15,7 +15,7 @@
             android:layout_width="36dip"
             android:layout_height="36dip"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@mipmap/ic_account_circle_white_36dp"/>
 
         <android.support.v7.widget.SearchView
             android:id="@+id/main_searchview"
@@ -41,9 +41,9 @@
             app:stl_indicatorInFront="false"
             app:stl_indicatorInterpolation="smart"
             app:stl_indicatorGravity="bottom"
-            app:stl_indicatorColor="@android:color/holo_orange_light"
+            app:stl_indicatorColor="@color/colorSecondaryLight"
             app:stl_indicatorThickness="2dp"
-            app:stl_indicatorWidth="30dip"
+            app:stl_indicatorWidth="40dip"
             app:stl_indicatorCornerRadius="1dp"
             app:stl_overlineColor="#4D000000"
             app:stl_overlineThickness="0dp"
