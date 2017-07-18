@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dip">
+    android:layout_margin="5dip"
+    app:cardBackgroundColor="@color/cardview_dark_background"
+    app:cardCornerRadius="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="2dip"
-        android:background="@android:color/white"
-        android:padding="5dip"
+        android:background="@drawable/white_2dp_round_bg"
         android:orientation="vertical">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/item_dynamic_imageview"
             android:layout_width="match_parent"
             android:layout_height="200dip"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/test_image1"/>
+            app:actualImageScaleType="centerCrop"
+            app:roundedCornerRadius="2dp"
+            app:roundBottomLeft="false"
+            app:roundBottomRight="false"
+            app:placeholderImage="@drawable/default_placeholder"/>
 
         <TextView
             android:layout_below="@id/item_dynamic_imageview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="5dip"
+            android:layout_margin="8dip"
             android:lineSpacingMultiplier="1.2"
             android:textSize="14sp"
             android:textColor="@android:color/secondary_text_light"
@@ -35,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="22dip"
             android:gravity="center_vertical"
-            android:paddingLeft="2dip"
-            android:paddingRight="2dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
             android:layout_alignBottom="@+id/item_dynamic_imageview"
             android:background="#55000000">
 
@@ -56,4 +59,4 @@
                 android:text="地点：西安钟楼"/>
         </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</android.support.v7.widget.CardView>
