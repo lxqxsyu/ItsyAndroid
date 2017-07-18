@@ -7,27 +7,39 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.LatLng;
-import com.amap.api.maps2d.model.MarkerOptions;
-import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.MultiPointItem;
+import com.amap.api.maps.model.MultiPointOverlay;
+import com.amap.api.maps.model.MultiPointOverlayOptions;
+import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.help.Inputtips;
+import com.amap.api.services.help.InputtipsQuery;
+import com.amap.api.services.help.Tip;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.util.LogUtil;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by 水寒 on 2017/7/14.
  */
 
-public class MainFragment1 extends BaseMainFragment {
+public class MainFragment1 extends BaseMainFragment implements PoiSearch.OnPoiSearchListener, Inputtips.InputtipsListener {
 
     private MapView mMapView;
     private AMap mAMap;
+    private MaterialSearchView mSearchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -109,13 +121,87 @@ public class MainFragment1 extends BaseMainFragment {
     }
 
     @Override
+    public void onPoiSearched(PoiResult poiResult, int j) {
+        MultiPointOverlayOptions overlayOptions = new MultiPointOverlayOptions();
+        overlayOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                .decodeResource(getResources(),R.mipmap.ic_launcher_round)));//设置图标
+        overlayOptions.anchor(0.5f,0.5f); //设置锚点
+        MultiPointOverlay multiPointOverlay = mAMap.addMultiPointOverlay(overlayOptions);
+        List<PoiItem> poiItems = poiResult.getPois();
+        List<MultiPointItem> list = new ArrayList<>();
+        for(int i = 0; i < poiItems.size(); i++){
+            //创建MultiPointItem存放，海量点中某单个点的位置及其他信息
+            MultiPointItem multiPointItem = new MultiPointItem(
+                    new LatLng(poiItems.get(i).getLatLonPoint().getLatitude(), poiItems.get(i).getLatLonPoint().getLongitude()));
+            list.add(multiPointItem);
+        }
+        multiPointOverlay.setItems(list);//将规范化的点集交给海量点管理对象设置，待加载完毕即可看到海量点信息
+    }
+
+    @Override
+    public void onPoiItemSearched(PoiItem poiItem, int i) {
+
+    }
+
+    @Override
+    public void onGetInputtips(List<Tip> list, int j) {
+        String[] inputtips = new String[list.size()];
+        for(int i = 0; i < list.size(); i++){
+            inputtips[i] = list.get(i).getAddress();
+        }
+        mSearchView.setSuggestions(inputtips);
+    }
+
+    @Override
     protected void initView(View view) {
 
     }
 
     @Override
     public void attachActionBarView(View actionbarView) {
+        if(actionbarView == null) return;
+        mSearchView = (MaterialSearchView) actionbarView.findViewById(R.id.search_view);
+        //mSearchView.setVoiceSearch(true); //or false
+        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String keyword) {
+                LogUtil.d("Search_keyword == " + keyword);
+                PoiSearch.Query query = new PoiSearch.Query(keyword, "110000", "");
+                //keyWord表示搜索字符串，
+                //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
+                //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
+                query.setPageSize(10);// 设置每页最多返回多少条poiitem
+                query.setPageNum(1);//设置查询页码
+                PoiSearch poiSearch = new PoiSearch(MainFragment1.this.getContext(), query);
+                poiSearch.setOnPoiSearchListener(MainFragment1.this);
+                poiSearch.searchPOIAsyn();
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Do some magic
+                //第二个参数传入null或者“”代表在全国进行检索，否则按照传入的city进行检索
+                InputtipsQuery inputquery = new InputtipsQuery(newText, "");
+                inputquery.setCityLimit(true);//限制在当前城市
+                Inputtips inputTips = new Inputtips(MainFragment1.this.getContext(), inputquery);
+                inputTips.setInputtipsListener(MainFragment1.this);
+                inputTips.requestInputtipsAsyn();
+                return true;
+            }
+        });
+
+        mSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                //Do some magic
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                //Do some magic
+            }
+        });
     }
 
     @Override

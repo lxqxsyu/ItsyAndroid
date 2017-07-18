@@ -2,11 +2,12 @@ package com.guohe.ltsyandroid.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.guohe.ltsyandroid.view.fragment.MainFragment1;
 import com.guohe.ltsyandroid.view.fragment.MainFragment2;
 import com.guohe.ltsyandroid.view.fragment.MainFragment3;
 import com.guohe.ltsyandroid.view.fragment.MainFragment4;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +34,7 @@ public class MainActivity extends BaseActivity {
     private BaseMainFragment mCurrentFragment;
     private List<Class<? extends BaseMainFragment>> mFragmentsClass = new ArrayList<>();
     private Map<Integer, BaseMainFragment> mFragments = new HashMap<>();
+    private MaterialSearchView mSearchView;
     private View mActionBarView;
     private View mActionBarFragment1;
     private View mActionBarFragment3;
@@ -95,11 +98,12 @@ public class MainActivity extends BaseActivity {
         if(mCurrentIndex == currentIndex) return;
         mCurrentIndex = currentIndex;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        for(int i = 0; i < mFragments.size(); i++) {
+        /*for(int i = 0; i < mFragments.size(); i++) {
             if(i != currentIndex) {
                 fragmentTransaction.hide(mFragments.get(i));
             }
-        }
+        }*/
+        fragmentTransaction.hide(mCurrentFragment);
         if(!mFragments.containsKey(mCurrentIndex)){
             fragmentTransaction.add(R.id.fragment_container, getFragmentInstance(), String.valueOf(mCurrentIndex));
         }else{
@@ -137,18 +141,7 @@ public class MainActivity extends BaseActivity {
             ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
                     ActionBar.LayoutParams.WRAP_CONTENT);
             actionBar.setCustomView(mActionBarView, layoutParams);//设置自定义的布局：actionbar_custom
-            SearchView searchView=(SearchView) mActionBarView.findViewById(R.id.main_searchview);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    return false;
-                }
-            });
+            mSearchView = (MaterialSearchView) mActionBarView.findViewById(R.id.search_view);
             mActionBarFragment1 = mActionBarView.findViewById(R.id.actionbar_fragment1);
             mActionBarFragment3 = mActionBarView.findViewById(R.id.actionbar_fragment3);
             mActionBarFragment4 = mActionBarView.findViewById(R.id.actionbar_fragment4);
@@ -205,26 +198,60 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        LogUtil.d("preparedOption_index == " + mCurrentIndex);
+        MenuItem item;
         menu.clear();
         switch (mCurrentIndex){
             case 0:
                 getMenuInflater().inflate(R.menu.main_menu, menu);
+                item = menu.findItem(R.id.action_search);
+                mSearchView.setMenuItem(item);
+                mSearchView.setHint("请输入你要查看的位置");
                 break;
             case 1:
                 getMenuInflater().inflate(R.menu.main_menu2, menu);
+                item = menu.findItem(R.id.action_search);
+                mSearchView.setMenuItem(item);
+                mSearchView.setHint("请输入主题名称");
                 break;
             case 2:
                 break;
             case 3:
                 break;
         }
+        if (mSearchView.isSearchOpen()) {
+            mSearchView.closeSearch();
+        }
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mSearchView.isSearchOpen()) {
+            mSearchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         mCurrentFragment.onOptionsItemSelected(item);
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && matches.size() > 0) {
+                String searchWrd = matches.get(0);
+                if (!TextUtils.isEmpty(searchWrd)) {
+                    mSearchView.setQuery(searchWrd, false);
+                }
+            }
+
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

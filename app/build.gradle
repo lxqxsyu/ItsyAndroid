@@ -75,5 +75,8 @@ dependencies {
     //SmartTabLayout
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
-    compile files('libs/AMap2DMap_5.2.0_AMapSearch_5.2.1_AMapLocation_3.4.1_20170630.jar')
+    //高德地图
+    compile files('libs/AMap3DMap_5.2.1_AMapNavi_5.2.1_AMapSearch_5.2.1_AMapLocation_3.4.1_20170710.jar')
+    //搜索框
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
 }
