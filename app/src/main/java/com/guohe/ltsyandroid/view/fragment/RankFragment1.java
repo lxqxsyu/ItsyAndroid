@@ -1,5 +1,6 @@
 package com.guohe.ltsyandroid.view.fragment;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,12 @@ public class RankFragment1 extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        refreshView(R.id.rank_fragment1_refresh, new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
         mRecyclerView = getView(R.id.rank1_recyclerview);
     }
 

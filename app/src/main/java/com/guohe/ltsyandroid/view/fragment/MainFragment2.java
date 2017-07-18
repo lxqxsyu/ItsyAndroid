@@ -1,5 +1,6 @@
 package com.guohe.ltsyandroid.view.fragment;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,6 +49,12 @@ public class MainFragment2 extends BaseMainFragment {
 
     @Override
     protected void initView(View view) {
+        refreshView(R.id.main_fragment2_refresh, new SwipeRefreshLayout.OnRefreshListener(){
+            @Override
+            public void onRefresh() {
+
+            }
+        });
         mRecyclerView = getView(R.id.dynamic_recyclerview);
         bindView();
     }

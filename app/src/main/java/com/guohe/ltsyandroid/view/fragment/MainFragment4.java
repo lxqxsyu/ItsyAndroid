@@ -2,6 +2,7 @@ package com.guohe.ltsyandroid.view.fragment;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.guohe.ltsyandroid.MvpPresenter;
@@ -38,6 +39,12 @@ public class MainFragment4 extends BaseMainFragment{
 
     @Override
     protected void initView(View view) {
+        refreshView(R.id.main_fragment4_refresh, new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
         FloatingActionButton fab = getView(R.id.fab_edit);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

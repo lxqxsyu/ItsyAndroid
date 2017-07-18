@@ -1,8 +1,10 @@
 package com.guohe.ltsyandroid.view.base;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,8 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     private BaseView mBaseView;
     private View mView;
     private List<Subscription> mSubscriptions = new ArrayList<>();
-
     private List<MvpPresenter> mPresenters = new ArrayList<>();
+    private SwipeRefreshLayout mRefreshView;
 
     public BaseFragment(){
         mBaseView = new BaseView();
@@ -61,6 +63,11 @@ public abstract class BaseFragment extends Fragment implements MvpView {
             presenter.dettachView();
         }
         mPresenters.clear();
+    }
+
+
+    public SwipeRefreshLayout getRefreshView(){
+        return mRefreshView;
     }
 
     @Override
@@ -124,5 +131,30 @@ public abstract class BaseFragment extends Fragment implements MvpView {
             LogUtil.e("Could not cast View to concrete class.", ex);
             throw ex;
         }
+    }
+
+    /**
+     * 刷新界面
+     * @param id
+     * @param onRefresh
+     */
+    public SwipeRefreshLayout refreshView(int id, final SwipeRefreshLayout.OnRefreshListener onRefresh) {
+        SwipeRefreshLayout refreshView = getView(id);
+        if (refreshView == null) return null;
+        mRefreshView = refreshView;
+        if(mRefreshView.isRefreshing()) return mRefreshView;
+        mBaseView.refreshView(refreshView, new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onRefresh.onRefresh();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRefreshView.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
+        return refreshView;
     }
 }
