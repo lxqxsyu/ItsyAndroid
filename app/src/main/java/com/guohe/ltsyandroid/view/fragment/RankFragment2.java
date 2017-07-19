@@ -60,7 +60,7 @@ public class RankFragment2 extends BaseFragment{
     private void bindView() {
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        mAdapter = new PhotoDynamicAdapter(this.getContext());
+        mAdapter = new PhotoDynamicAdapter(this.getActivity());
         HeaderAndFooterRecyclerViewAdapter headAdapter = new HeaderAndFooterRecyclerViewAdapter(mAdapter);
         mRecyclerView.setAdapter(headAdapter);
         View space = new View(this.getActivity());

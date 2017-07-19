@@ -13,7 +13,7 @@
         android:background="@drawable/white_2dp_round_bg">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/item_dynamic_imageview"
+            android:id="@+id/item_photocollection_imageview"
             android:layout_width="match_parent"
             android:layout_height="200dip"
             app:actualImageScaleType="centerCrop"
@@ -23,7 +23,7 @@
             app:placeholderImage="@drawable/default_placeholder"/>
 
         <TextView
-            android:layout_below="@id/item_dynamic_imageview"
+            android:layout_below="@id/item_photocollection_imageview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -39,7 +39,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
-            android:layout_alignBottom="@+id/item_dynamic_imageview"
+            android:layout_alignBottom="@+id/item_photocollection_imageview"
             android:background="#55000000">
 
             <TextView

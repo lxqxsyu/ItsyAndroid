@@ -31,7 +31,17 @@ public class ContestListAdapter extends RecyclerView.Adapter<ContestListAdapter.
 
     @Override
     public void onBindViewHolder(ContestListViewHolder holder, int position) {
-        FrescoUtils.loadRes(holder.imageView, R.mipmap.test_image1, null, 0, 0, null);
+        int imageRes;
+        if(position % 4 == 0){
+            imageRes = R.mipmap.test_image4;
+        }else if(position % 4 == 1){
+            imageRes = R.mipmap.test_image7;
+        }else if(position % 4 == 2){
+            imageRes = R.mipmap.test_image6;
+        }else{
+            imageRes = R.mipmap.test_image3;
+        }
+        FrescoUtils.loadRes(holder.imageView, imageRes, null, 0, 0, null);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

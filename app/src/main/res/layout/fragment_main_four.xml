@@ -1,45 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_fragment4_refresh"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="180dip"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="180dip"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                android:layout_height="match_parent">
 
-                <ImageView
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/personal_authorbg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/test_image1"/>
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+                    app:placeholderImage="@drawable/default_placeholder"
+                    app:actualImageScaleType="centerCrop"/>
 
-        <include layout="@layout/container_personal_fragment" />
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/personal_authorhead"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
+                    android:layout_centerInParent="true"
+                    app:placeholderImage="@drawable/default_placeholder"
+                    app:actualImageScaleType="centerCrop"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dip"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@mipmap/ic_add_a_photo_white_24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="用户昵称"
+                    android:layout_below="@+id/personal_authorhead"
+                    android:layout_marginTop="8dip"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+    <include layout="@layout/container_personal_fragment" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dip"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@mipmap/ic_add_a_photo_white_24dp" />
+
+</android.support.design.widget.CoordinatorLayout>

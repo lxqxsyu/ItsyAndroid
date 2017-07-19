@@ -33,9 +33,19 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Au
 
     @Override
     public void onBindViewHolder(AuthorListViewHolder holder, int position) {
-        FrescoUtils.loadRes(holder.wallpaper, R.mipmap.test_image1, null, 0, 0, null);
+        int imageRes;
+        if(position % 4 == 0){
+            imageRes = R.mipmap.test_image6;
+        }else if(position % 4 == 1){
+            imageRes = R.mipmap.test_image7;
+        }else if(position % 4 == 2){
+            imageRes = R.mipmap.test_image6;
+        }else{
+            imageRes = R.mipmap.test_image3;
+        }
+        FrescoUtils.loadRes(holder.wallpaper, imageRes, null, 0, 0, null);
         FrescoUtils.setCircle(holder.authorHead, 0);
-        FrescoUtils.loadRes(holder.authorHead, R.mipmap.ic_launcher_round, null, 0, 0, null);
+        FrescoUtils.loadRes(holder.authorHead, R.mipmap.test_image5, null, 0, 0, null);
     }
 
     @Override
