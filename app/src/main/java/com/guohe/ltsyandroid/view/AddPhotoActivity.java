@@ -2,6 +2,7 @@ package com.guohe.ltsyandroid.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
@@ -33,7 +34,12 @@ public class AddPhotoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -45,4 +51,9 @@ public class AddPhotoActivity extends BaseActivity {
         Intent intent = new Intent(context, AddPhotoActivity.class);
         context.startActivity(intent);
     }
+
+   /* @Override
+    public void onBackPressed() {
+        ToastUtil.showToast("按了back建");
+    }*/
 }
