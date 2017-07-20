@@ -5,10 +5,65 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dip"
-        android:text="哈哈哈哈哈哈哈哈或哈哈哈哈或哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或啊哈哈奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="作品名称"
+                android:layout_marginTop="24dip"
+                android:textSize="18sp"
+                android:textColor="@android:color/primary_text_light"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="作者：流浪的猫"
+                android:textSize="16sp"
+                android:textColor="@android:color/primary_text_light"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:text="这幅画是我站在喜马拉雅山顶拍的，酷不酷？"
+                android:textSize="14sp"
+                android:textColor="@android:color/primary_text_light"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="120dip"
+                    android:layout_height="30dip"
+                    android:text="+关注"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="8dip"
+                    android:background="@drawable/secondary_light_2dp_round_bg"/>
+                <Button
+                    android:layout_width="120dip"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="15dip"
+                    android:text="打赏"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="8dip"
+                    android:background="@drawable/secondary_light_2dp_round_bg"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

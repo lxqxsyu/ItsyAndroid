@@ -83,4 +83,6 @@ dependencies {
     //fresco
     compile 'com.facebook.fresco:fresco:0.14.1'
     compile 'com.facebook.fresco:animated-gif:0.14.1'
+    //一个展开菜单
+    compile 'com.github.joaquimley:faboptions:1.1.2'
 }

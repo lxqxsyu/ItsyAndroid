@@ -87,12 +87,26 @@ public class SplashActivity extends BaseActivity{
 
     @Override
     protected void initData() {
-        FrescoUtils.getBitmapByRes(R.mipmap.test_image7, this, GlobalConfigManage.getInstance().getScreenWidth(),
+        FrescoUtils.getBitmapByRes(R.mipmap.test_image4, this, GlobalConfigManage.getInstance().getScreenWidth(),
                 GlobalConfigManage.getInstance().getScreenHeight(), new FrescoUtils.BitmapListener() {
                     @Override
                     public void onSuccess(Bitmap bitmap) {
                         LogUtil.d("bitmap == " + bitmap);
                         if(bitmap == null) return;
+                        // Palette的部分
+                        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
+                                Palette.Swatch vibrant = palette.getVibrantSwatch();
+                                mBottomInfo.setBackgroundColor(colorBurn(vibrant.getRgb()));
+                                mBottomInfo.setAlpha(0.3f);
+                                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                                    Window window = getWindow();
+                                    window.setStatusBarColor(vibrant.getRgb());
+                                    window.setNavigationBarColor(vibrant.getRgb());
+                                }
+                            }
+                        });
                         int width = bitmap.getWidth();
                         int height = bitmap.getHeight();
                         if(width > height) {
@@ -107,19 +121,6 @@ public class SplashActivity extends BaseActivity{
                         }else{
                             setBitmap(bitmap);
                         }
-                        // Palette的部分
-                        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-                            @Override
-                            public void onGenerated(Palette palette) {
-                                Palette.Swatch vibrant = palette.getVibrantSwatch();
-                                mBottomInfo.setBackgroundColor(vibrant.getRgb());
-                                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                                    Window window = getWindow();
-                                    window.setStatusBarColor(colorBurn(vibrant.getRgb()));
-                                    window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
-                                }
-                            }
-                        });
                     }
 
                     @Override

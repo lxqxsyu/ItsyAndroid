@@ -3,14 +3,20 @@ package com.guohe.ltsyandroid.view;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.graphics.Palette;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
+import com.guohe.ltsyandroid.manage.config.GlobalConfigManage;
+import com.guohe.ltsyandroid.util.FrescoUtils;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
+import com.joaquimley.faboptions.FabOptions;
 
 import java.util.List;
 
@@ -21,9 +27,10 @@ import static com.wou.commonutils.ColorGenerator.colorBurn;
  * 照片详情
  */
 
-public class PhotoDetailActivity extends BaseActivity{
+public class PhotoDetailActivity extends BaseActivity implements View.OnClickListener{
 
     private CollapsingToolbarLayout mToolbarLayout;
+    private SimpleDraweeView mDetailPhoto;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -43,31 +50,88 @@ public class PhotoDetailActivity extends BaseActivity{
     @Override
     protected void initView() {
         mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.test_image1);
-
-        // Palette的部分
-        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                Palette.Swatch vibrant = palette.getVibrantSwatch();
-                mToolbarLayout.setContentScrimColor(colorBurn(vibrant.getRgb()));
-                //mPagerSlidingTabStrip.setTextColor(vibrant.getTitleTextColor());
-                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                    Window window = getWindow();
-                    window.setStatusBarColor(colorBurn(vibrant.getRgb()));
-                    window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
-                }
-            }
-        });
+        mDetailPhoto = getView(R.id.photodetail_photo);
+        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
+        fabOptions.setButtonsMenu(R.menu.photo_option_menu);
+        fabOptions.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
+        FrescoUtils.getBitmapByRes(R.mipmap.test_image4, this, GlobalConfigManage.getInstance().getScreenWidth(),
+                GlobalConfigManage.getInstance().getScreenHeight(), new FrescoUtils.BitmapListener() {
+                    @Override
+                    public void onSuccess(Bitmap bitmap) {
+                        if(bitmap == null) return;
+                        // Palette的部分
+                        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
+                                Palette.Swatch vibrant = palette.getVibrantSwatch();
+                                mToolbarLayout.setContentScrimColor(colorBurn(vibrant.getRgb()));
+                                //mPagerSlidingTabStrip.setTextColor(vibrant.getTitleTextColor());
+                                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                                    Window window = getWindow();
+                                    window.setStatusBarColor(colorBurn(vibrant.getRgb()));
+                                    window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
+                                }
+                            }
+                        });
+                        int width = bitmap.getWidth();
+                        int height = bitmap.getHeight();
+                        if(width > height) {
+                            // 创建操作图片用的matrix对象
+                            Matrix matrix = new Matrix();
+                            //旋转图片 动作
+                            matrix.postRotate(90);
+                            //创建新的图片
+                            Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+                                    width, height, matrix, true);
+                            int screenWidth = GlobalConfigManage.getInstance().getScreenWidth();
+                            int showHeight = (int)((float)screenWidth / height * width);
+                            setBitmap(resizedBitmap, showHeight);
+                        }else{
+                            int screenWidth = GlobalConfigManage.getInstance().getScreenWidth();
+                            int showHeight = (int)((float)screenWidth / width * height);
+                            setBitmap(bitmap, showHeight);
+                        }
+                    }
 
+                    @Override
+                    public void onFail() {
+
+                    }
+                });
+    }
+
+    private void setBitmap(Bitmap bitmap, int showHeight){
+        ViewGroup.LayoutParams params = mDetailPhoto.getLayoutParams();
+        params.width = GlobalConfigManage.getInstance().getScreenWidth();
+        params.height = showHeight;
+        mDetailPhoto.setLayoutParams(params);
+        mDetailPhoto.setImageBitmap(bitmap);
     }
 
     public static void startActivity(Context context){
         Intent intent = new Intent(context, PhotoDetailActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.faboptions_favorite:  //收藏
+
+                break;
+            case R.id.faboptions_textsms:   //评论
+
+                break;
+            case R.id.faboptions_download:  //下载
+
+                break;
+            case R.id.faboptions_share:     //分享
+
+                break;
+        }
     }
 }
