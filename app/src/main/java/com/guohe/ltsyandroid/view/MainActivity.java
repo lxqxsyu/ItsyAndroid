@@ -205,13 +205,13 @@ public class MainActivity extends BaseActivity {
                 getMenuInflater().inflate(R.menu.main_menu, menu);
                 item = menu.findItem(R.id.action_search);
                 mSearchView.setMenuItem(item);
-                mSearchView.setHint("请输入你要查看的位置");
+                mSearchView.setHint("搜索位置");
                 break;
             case 1:
                 getMenuInflater().inflate(R.menu.main_menu2, menu);
                 item = menu.findItem(R.id.action_search);
                 mSearchView.setMenuItem(item);
-                mSearchView.setHint("请输入主题名称");
+                mSearchView.setHint("搜索作品");
                 break;
             case 2:
                 break;

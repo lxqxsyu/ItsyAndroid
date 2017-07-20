@@ -13,7 +13,16 @@
     <string name="main_menu_text4">街景</string>
     <string name="main_menu_text5">风光</string>
     <string name="main_menu_text6">儿童</string>
+    <string name="main_menu_text7">运动</string>
+    <string name="main_menu_text8">动物</string>
+    <string name="main_menu_text9">航拍</string>
+    <string name="main_menu_text10">美食</string>
+    <string name="main_menu_text11">纪实</string>
+    <string name="main_menu_text12">其它</string>
+
     <string name="main_menu_text21">全部</string>
     <string name="main_menu_text22">附近</string>
     <string name="main_menu_text23">已关注</string>
+    <string name="main_menu_text24">最新</string>
+    <string name="main_menu_text25">最热</string>
 </resources>
