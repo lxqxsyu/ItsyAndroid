@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:fitsSystemWindows="true"
-    android:background="@android:color/darker_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,29 +11,45 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
 
-    <LinearLayout
-        android:id="@+id/bottom_info_area"
-        android:layout_alignParentBottom="true"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/view_need_offset"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingBottom="5dip"
-        android:paddingTop="12dip"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/bottom_info_area"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:text="本周封面"/>
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:paddingBottom="5dip"
+            android:paddingTop="8dip"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="12dip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:text=" @copyright xxx网络科技有限公司 "/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/splash_week_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@android:color/primary_text_dark"
+                android:text="本周封面【荷花的美】"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@android:color/primary_text_dark"
+                android:layout_marginTop="5dip"
+                android:text="作者：爱哭的猫"/>
+            <TextView
+                android:layout_marginTop="12dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@android:color/secondary_text_dark"
+                android:text=" @copyright xxx网络科技有限公司 "/>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+
 </RelativeLayout>

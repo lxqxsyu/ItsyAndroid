@@ -6,7 +6,6 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.graphics.Palette;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 
 import com.guohe.ltsyandroid.MvpPresenter;
@@ -16,11 +15,10 @@ import com.guohe.ltsyandroid.manage.config.GlobalConfigManage;
 import com.guohe.ltsyandroid.util.FrescoUtils;
 import com.guohe.ltsyandroid.util.LogUtil;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
+import com.jaeger.library.StatusBarUtil;
 import com.wou.commonutils.ScreenSizeUtil;
 
 import java.util.List;
-
-import static com.wou.commonutils.ColorGenerator.colorBurn;
 
 /**
  * Created by 水寒 on 2017/7/14.
@@ -36,6 +34,7 @@ public class SplashActivity extends BaseActivity{
 
     private ImageView mSplashImage;
     private View mBottomInfo;
+    private View mOffset;
 
     private WeakRefrenceHandler<SplashActivity> mHandler = new WeakRefrenceHandler<SplashActivity>(this) {
         @Override
@@ -81,6 +80,8 @@ public class SplashActivity extends BaseActivity{
     protected void initView() {
         mSplashImage = getView(R.id.splash_image);
         mBottomInfo = getView(R.id.bottom_info_area);
+        mOffset = getView(R.id.view_need_offset);
+        StatusBarUtil.setTranslucentForImageView(this, 100, mOffset);
         GlobalConfigManage.getInstance().setScreenWidth(ScreenSizeUtil.getScreenWidth(this));
         GlobalConfigManage.getInstance().setScreenHeight(ScreenSizeUtil.getScreenHeight(this));
     }
@@ -98,13 +99,8 @@ public class SplashActivity extends BaseActivity{
                             @Override
                             public void onGenerated(Palette palette) {
                                 Palette.Swatch vibrant = palette.getVibrantSwatch();
-                                mBottomInfo.setBackgroundColor(colorBurn(vibrant.getRgb()));
-                                mBottomInfo.setAlpha(0.3f);
-                                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                                    Window window = getWindow();
-                                    window.setStatusBarColor(vibrant.getRgb());
-                                    window.setNavigationBarColor(vibrant.getRgb());
-                                }
+                                mBottomInfo.setBackgroundColor(vibrant.getRgb());
+                                mBottomInfo.getBackground().setAlpha(30);
                             }
                         });
                         int width = bitmap.getWidth();

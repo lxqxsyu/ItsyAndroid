@@ -1,1 +1,1 @@
-include ':app', ':tastytoast', ':HeaderAndFooterRecyclerView', ':commonutils'
+include ':app', ':tastytoast', ':HeaderAndFooterRecyclerView', ':commonutils', ':takephoto_library'
