@@ -90,7 +90,8 @@
             android:scaleType="centerInside"
             android:background="@null"
             android:paddingRight="20dip"
-            app:srcCompat="@drawable/ic_main_tab1_24dp"/>
+            android:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_share_24px"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,6 +110,7 @@
             android:layout_alignParentRight="true"
             android:background="@null"
             android:paddingLeft="20dip"
-            app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+            android:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_settings_24px"/>
     </RelativeLayout>
 </RelativeLayout>

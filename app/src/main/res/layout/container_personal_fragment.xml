@@ -45,14 +45,18 @@
                 android:paddingRight="10dip"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_flag_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="关注我的"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -65,7 +69,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp" />
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -83,14 +88,18 @@
                 android:paddingRight="10dip"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_favorite_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="我的关注"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -103,7 +112,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -121,14 +131,20 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_collections_24px"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="我的收藏"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -141,7 +157,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -159,14 +176,18 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_insert_photo_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="我的作品"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -179,7 +200,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -197,14 +219,18 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_style_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="我的图集"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -217,7 +243,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -235,14 +262,18 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_person_pin_circle_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="我的地图"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -255,7 +286,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -273,14 +305,18 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_message_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="消息中心"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -293,7 +329,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -311,17 +348,20 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_call_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="联系我们"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
-
                 <android.support.v4.widget.Space
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
@@ -331,7 +371,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -349,14 +390,18 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    android:layout_marginRight="10dip"
+                    app:srcCompat="@drawable/ic_feedback_24px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="建议与反馈"
-                    android:drawablePadding="10dip"
-                    android:drawableLeft="@drawable/ic_main_tab2_24dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/secondary_text_light"/>
 
@@ -369,7 +414,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_main_tab3_24dp"/>
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

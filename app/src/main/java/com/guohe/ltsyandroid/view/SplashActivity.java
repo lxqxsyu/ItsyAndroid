@@ -1,18 +1,22 @@
 package com.guohe.ltsyandroid.view;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.graphics.Palette;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.custome.WeakRefrenceHandler;
+import com.guohe.ltsyandroid.manage.config.GlobalConfigManage;
 import com.guohe.ltsyandroid.util.FrescoUtils;
+import com.guohe.ltsyandroid.util.LogUtil;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
+import com.wou.commonutils.ScreenSizeUtil;
 
 import java.util.List;
 
@@ -30,7 +34,8 @@ public class SplashActivity extends BaseActivity{
 
     private long mStartTime;  //开始启动页时间
 
-    private SimpleDraweeView mSplashImage;
+    private ImageView mSplashImage;
+    private View mBottomInfo;
 
     private WeakRefrenceHandler<SplashActivity> mHandler = new WeakRefrenceHandler<SplashActivity>(this) {
         @Override
@@ -54,14 +59,6 @@ public class SplashActivity extends BaseActivity{
         }
     };
 
-   /* @Override
-    protected void initWindow() {
-        super.initWindow();
-        //全屏显示
-        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,
-                WindowManager.LayoutParams. FLAG_FULLSCREEN);
-    }*/
-
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
 
@@ -83,24 +80,57 @@ public class SplashActivity extends BaseActivity{
     @Override
     protected void initView() {
         mSplashImage = getView(R.id.splash_image);
+        mBottomInfo = getView(R.id.bottom_info_area);
+        GlobalConfigManage.getInstance().setScreenWidth(ScreenSizeUtil.getScreenWidth(this));
+        GlobalConfigManage.getInstance().setScreenHeight(ScreenSizeUtil.getScreenHeight(this));
     }
 
     @Override
     protected void initData() {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.test_image7);
-        // Palette的部分
-        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                Palette.Swatch vibrant = palette.getVibrantSwatch();
-                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                    Window window = getWindow();
-                    window.setStatusBarColor(colorBurn(vibrant.getRgb()));
-                    window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
-                }
-            }
-        });
-        FrescoUtils.loadRes(mSplashImage, R.mipmap.test_image7, null, 0, 0, null);
+        FrescoUtils.getBitmapByRes(R.mipmap.test_image7, this, GlobalConfigManage.getInstance().getScreenWidth(),
+                GlobalConfigManage.getInstance().getScreenHeight(), new FrescoUtils.BitmapListener() {
+                    @Override
+                    public void onSuccess(Bitmap bitmap) {
+                        LogUtil.d("bitmap == " + bitmap);
+                        if(bitmap == null) return;
+                        int width = bitmap.getWidth();
+                        int height = bitmap.getHeight();
+                        if(width > height) {
+                            // 创建操作图片用的matrix对象
+                            Matrix matrix = new Matrix();
+                            //旋转图片 动作
+                            matrix.postRotate(90);
+                            //创建新的图片
+                            Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+                                    width, height, matrix, true);
+                            setBitmap(resizedBitmap);
+                        }else{
+                            setBitmap(bitmap);
+                        }
+                        // Palette的部分
+                        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
+                                Palette.Swatch vibrant = palette.getVibrantSwatch();
+                                mBottomInfo.setBackgroundColor(vibrant.getRgb());
+                                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                                    Window window = getWindow();
+                                    window.setStatusBarColor(colorBurn(vibrant.getRgb()));
+                                    window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFail() {
+
+                    }
+                });
+    }
+
+    private void setBitmap(Bitmap bitmap){
+        mSplashImage.setImageBitmap(bitmap);
     }
 
     @Override

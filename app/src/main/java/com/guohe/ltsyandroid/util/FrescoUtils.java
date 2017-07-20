@@ -462,14 +462,26 @@ public class FrescoUtils {
      * @param height
      * @param listener
      */
-    public static void getBitmap(String url, Context context, int width, int height, final BitmapListener listener){
-        getBitmapWithProcessor(url,context,width,height,null,listener);
+    public static void getBitmapByUrl(String url, Context context, int width, int height, final BitmapListener listener){
+        getBitmapWithProcessor(Uri.parse(url), context,width,height,null,listener);
+    }
+
+    /**
+     * 拿到指定宽高的bitmap
+     * @param resId
+     * @param context
+     * @param width
+     * @param height
+     * @param listener
+     */
+    public static void getBitmapByRes(int resId, Context context, int width, int height, final BitmapListener listener){
+        getBitmapWithProcessor(getResUri(resId), context, width, height, null, listener);
     }
 
 
     /**
      * 拿到指定宽高，并经过Processor处理的bitmap
-     * @param url
+     * @param uri
      * @param context
      * @param width
      * @param height
@@ -477,14 +489,14 @@ public class FrescoUtils {
      * @param listener
      *
      */
-    public static void getBitmapWithProcessor(final String url, Context context, final int width, final int height,
+    public static void getBitmapWithProcessor(final Uri uri, Context context, final int width, final int height,
                                               BasePostprocessor processor, final BitmapListener listener){
         ResizeOptions resizeOptions = null;
         if (width !=0 && height != 0 ){
             resizeOptions = new ResizeOptions(width, height);
         }
 
-        ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
+        ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(false) //我们是拿bitmap对象,不是显示,所以这里不需要渐进渲染
                 .setPostprocessor(processor)
                 .setResizeOptions(resizeOptions)//无法支持gif
@@ -498,8 +510,8 @@ public class FrescoUtils {
             protected void onNewResultImpl(Bitmap bitmap) {
                 //注意，gif图片解码方法与普通图片不一样，是无法拿到bitmap的。如果要把gif的第一帧的bitmap返回，怎么做？
                 //GifImage.create(bytes).decode(1l,9).getFrameInfo(1).
-                if (url.contains("gif")){
-                    File cacheFile  = getFileFromDiskCache(url);
+                if (uri.getPath().contains("gif")){
+                    File cacheFile  = getFileFromDiskCache(uri.getPath());
                     if (cacheFile.exists()){
                       Bitmap bitmapGif = GifUtils.getBitmapFromGifFile(cacheFile, width, height);//拿到gif第一帧的bitmap
                         Bitmap target = MyBitmapUtils.compressBitmap(bitmapGif,true,width,height);//将bitmap压缩到指定宽高。
