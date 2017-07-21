@@ -269,6 +269,7 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
             LogUtil.d("焦距 = " + focalLength);
             LogUtil.d("经度 = " + latitude);
             LogUtil.d("维度");
+            //http://blog.csdn.net/u011002668/article/details/51490712
         } catch (IOException e) {
             e.printStackTrace();
         }
