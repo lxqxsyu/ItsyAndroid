@@ -91,4 +91,8 @@ dependencies {
     compile 'com.jaeger.statusbarutil:library:1.4.0'
     //滑动返回
     compile 'com.r0adkll:slidableactivity:2.0.5'
+    //打标签
+    compile 'me.gujun.android.taggroup:library:1.4@aar'
+    //对话框
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
 }

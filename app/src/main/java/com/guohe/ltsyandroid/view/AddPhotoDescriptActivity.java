@@ -12,10 +12,11 @@ import com.guohe.ltsyandroid.view.base.BaseActivity;
 import java.util.List;
 
 /**
- * Created by 水寒 on 2017/7/19.
+ * Created by shuihan on 2017/7/21.
+ * 添加图片描述
  */
 
-public class SettingActivity extends BaseActivity{
+public class AddPhotoDescriptActivity extends BaseActivity {
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -29,7 +30,7 @@ public class SettingActivity extends BaseActivity{
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_setting;
+        return R.layout.activity_photodescript;
     }
 
     @Override
@@ -45,7 +46,6 @@ public class SettingActivity extends BaseActivity{
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
     }
 
     @Override
@@ -57,14 +57,14 @@ public class SettingActivity extends BaseActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                SettingActivity.this.finish();
+                AddPhotoDescriptActivity.this.finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     public static void startActivity(Context context){
-        Intent intent = new Intent(context, SettingActivity.class);
+        Intent intent = new Intent(context, AddPhotoDescriptActivity.class);
         context.startActivity(intent);
     }
 }
