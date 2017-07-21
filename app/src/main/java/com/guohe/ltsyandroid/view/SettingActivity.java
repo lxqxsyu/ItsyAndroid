@@ -2,6 +2,7 @@ package com.guohe.ltsyandroid.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
@@ -31,7 +32,18 @@ public class SettingActivity extends BaseActivity{
     }
 
     @Override
+    protected boolean canSlidr() {
+        return true;
+    }
+
+    @Override
     protected void initView() {
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
     }
 

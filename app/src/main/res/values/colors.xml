@@ -9,4 +9,5 @@
     <color name="colorAccent">#ff6f00</color>
 
     <color name="app_background">#f5f5f5</color>
+    <color name="app_splite_line">#dcdcdc</color>
 </resources>

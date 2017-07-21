@@ -21,6 +21,7 @@ import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
 import com.guohe.ltsyandroid.view.base.BaseFragment;
+import com.r0adkll.slidr.Slidr;
 
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class PhotoCollectionActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        Slidr.attach(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar = toolbar;
         setSupportActionBar(toolbar);

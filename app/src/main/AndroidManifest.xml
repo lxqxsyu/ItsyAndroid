@@ -26,7 +26,7 @@
         android:theme="@style/AppNoActionbarTheme">
         <activity
             android:name=".view.SplashActivity"
-            android:theme="@style/AppNoActionbarTheme"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,11 +46,13 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".view.AddPhotoActivity"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppCanSlidrTheme"
             android:label="添加作品"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".view.SettingActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:label="设置"
             android:screenOrientation="portrait"/>
         <!--高德地图-->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="34a05e779c0571897e8000363f8e68d2">

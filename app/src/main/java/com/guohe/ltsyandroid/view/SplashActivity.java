@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.annotation.LayoutRes;
 import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.ImageView;
@@ -77,11 +78,16 @@ public class SplashActivity extends BaseActivity{
     }
 
     @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        mOffset = getView(R.id.view_need_offset);
+        StatusBarUtil.setTranslucentForImageView(this, 100, mOffset);
+    }
+
+    @Override
     protected void initView() {
         mSplashImage = getView(R.id.splash_image);
         mBottomInfo = getView(R.id.bottom_info_area);
-        mOffset = getView(R.id.view_need_offset);
-        StatusBarUtil.setTranslucentForImageView(this, 100, mOffset);
         GlobalConfigManage.getInstance().setScreenWidth(ScreenSizeUtil.getScreenWidth(this));
         GlobalConfigManage.getInstance().setScreenHeight(ScreenSizeUtil.getScreenHeight(this));
     }
@@ -140,7 +146,7 @@ public class SplashActivity extends BaseActivity{
 
     @Override
     public void turnToOtherView() {
-        MainActivity.startActivity(this);
+        MainActivity.startActivity(SplashActivity.this);
         SplashActivity.this.finish();
     }
 }

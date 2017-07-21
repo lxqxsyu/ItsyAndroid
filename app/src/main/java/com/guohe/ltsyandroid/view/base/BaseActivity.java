@@ -1,5 +1,6 @@
 package com.guohe.ltsyandroid.view.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -12,6 +13,10 @@ import com.guohe.ltsyandroid.MvpView;
 import com.guohe.ltsyandroid.manage.rxbus.RxBus;
 import com.guohe.ltsyandroid.manage.rxbus.bean.BaseBusEvent;
 import com.guohe.ltsyandroid.util.LogUtil;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrConfig;
+import com.r0adkll.slidr.model.SlidrListener;
+import com.r0adkll.slidr.model.SlidrPosition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +53,35 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView{
         }
         initData();
         mBaseView.onCreate(this);
+        if(canSlidr()){
+            setSlidr();
+        }
+    }
+
+    private void setSlidr() {
+        SlidrConfig config = new SlidrConfig.Builder()
+                //.primaryColor(getResources().getColor(R.color.colorPrimary))
+                //.secondaryColor(getResources().getColor(R.color.colorSecondary))
+                .position(SlidrPosition.LEFT)
+                .sensitivity(1f)
+                .scrimColor(Color.BLACK)
+                //.scrimStartAlpha(0.8f)
+                //.scrimEndAlpha(0f)
+                .velocityThreshold(2400)
+                .distanceThreshold(0.25f)
+                .edge(true)
+                .edgeSize(0.18f) // The % of the screen that counts as the edge, default 18%
+                .listener(listenerSlidr())
+                .build();
+        Slidr.attach(this, config);
+    }
+
+    protected boolean canSlidr(){
+        return false;
+    }
+
+    protected SlidrListener listenerSlidr(){
+        return null;
     }
 
     /**

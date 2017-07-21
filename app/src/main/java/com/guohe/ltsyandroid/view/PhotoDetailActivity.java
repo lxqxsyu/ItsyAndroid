@@ -4,23 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.graphics.Palette;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.manage.config.GlobalConfigManage;
 import com.guohe.ltsyandroid.util.FrescoUtils;
+import com.guohe.ltsyandroid.view.adapter.CommentListAdapter;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
+import com.jaeger.library.StatusBarUtil;
 import com.joaquimley.faboptions.FabOptions;
 
 import java.util.List;
-
-import static com.wou.commonutils.ColorGenerator.colorBurn;
 
 /**
  * Created by shuihan on 2017/7/18.
@@ -31,6 +32,8 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
 
     private CollapsingToolbarLayout mToolbarLayout;
     private SimpleDraweeView mDetailPhoto;
+    private RecyclerView mRecyclerView;
+    private CommentListAdapter mAdapter;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -48,12 +51,33 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        StatusBarUtil.setTranslucentForImageView(this, 100, null);
+    }
+
+    @Override
+    protected boolean canSlidr() {
+        return true;
+    }
+
+    @Override
     protected void initView() {
         mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         mDetailPhoto = getView(R.id.photodetail_photo);
+        mRecyclerView = getView(R.id.photo_detail_commentlist);
         FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
         fabOptions.setButtonsMenu(R.menu.photo_option_menu);
         fabOptions.setOnClickListener(this);
+
+        bindView();
+    }
+
+    private void bindView() {
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new CommentListAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -64,7 +88,7 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
                     public void onSuccess(Bitmap bitmap) {
                         if(bitmap == null) return;
                         // Palette的部分
-                        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                       /* Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
                             @Override
                             public void onGenerated(Palette palette) {
                                 Palette.Swatch vibrant = palette.getVibrantSwatch();
@@ -76,7 +100,7 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
                                     window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
                                 }
                             }
-                        });
+                        });*/
                         int width = bitmap.getWidth();
                         int height = bitmap.getHeight();
                         if(width > height) {
