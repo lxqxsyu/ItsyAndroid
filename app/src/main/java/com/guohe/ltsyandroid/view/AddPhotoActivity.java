@@ -2,6 +2,7 @@ package com.guohe.ltsyandroid.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -32,6 +33,7 @@ import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 
+import java.io.IOException;
 import java.util.List;
 
 import me.gujun.android.taggroup.TagGroup;
@@ -240,6 +242,55 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
         mAddPhotoButton.setVisibility(View.GONE);
         mAddPhotoEditButton.setVisibility(View.VISIBLE);
         FrescoUtils.loadFile(mAddPhotoImage, imgPath, null, width, height, null);
+        try {
+            ExifInterface exifInterface = new ExifInterface(imgPath);
+            String make = exifInterface.getAttribute(ExifInterface.TAG_MAKE);  //设备品牌
+            String model = exifInterface.getAttribute(ExifInterface.TAG_MODEL); //设备型号，整形表示，在ExifInterface中有常量对应表示
+            String flash = exifInterface.getAttribute(ExifInterface.TAG_FLASH);//闪光灯
+            String imgHeight = exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH); //图片高度
+            String imgWidth = exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH); //图片宽度
+            String latitude = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE); //纬度
+            String longitude = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE); //经度
+            // exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF); //纬度名（N or S）
+            // exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF); //经度名（E or W）
+            String exposureTime = exifInterface.getAttribute(ExifInterface.TAG_EXPOSURE_TIME); //曝光时间
+            String aperture = exifInterface.getAttribute(ExifInterface.TAG_APERTURE); //光圈值
+            String iso = exifInterface.getAttribute(ExifInterface.TAG_ISO); //ISO感光度
+            String timestamp = exifInterface.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP); //时间戳
+            String whiteBalance = exifInterface.getAttribute(ExifInterface.TAG_WHITE_BALANCE); //白平衡
+            String focalLength = exifInterface.getAttribute(ExifInterface.TAG_FOCAL_LENGTH); //焦距
+
+            LogUtil.d("设备品牌： = " + make);
+            LogUtil.d("设备型号： = " + model);
+            LogUtil.d("曝光时间： = " + exposureTime);
+            LogUtil.d("光圈值： = " + aperture);
+            LogUtil.d("iso = " + iso);
+            LogUtil.d("白平衡 = " + whiteBalance);
+            LogUtil.d("焦距 = " + focalLength);
+            LogUtil.d("经度 = " + latitude);
+            LogUtil.d("维度");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       /* ExifInterface exif = new ExifInterface();
+        try {
+            exif.readExif(filename, ExifInterface.Options.OPTION_ALL);
+            // list of all tags found
+            List<ExifTag> all_tags = exif.getAllTags();
+            // jpeg quality
+            int jpeg_quality =  exif.getQualityGuess();
+            // image size
+            int[] imagesize = exif.getImageSize();
+            // process used to create the jpeg file
+            short process = exif.getJpegProcess();
+
+            // gps lat-lon
+            double[] latlon = exif.getLatLongAsDoubles();
+            LogUtil.d("定位 = " + latlon);
+            LogUtil.d("设备品牌：" + exif);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
     @Override
