@@ -1,6 +1,7 @@
 package com.jph.takephoto.compress;
 
 import com.jph.takephoto.model.TImage;
+
 import java.util.ArrayList;
 
 /**

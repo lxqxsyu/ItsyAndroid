@@ -86,7 +86,7 @@ dependencies {
     //一个展开菜单
     compile 'com.github.joaquimley:faboptions:1.1.2'
     //图片裁剪上传
-    //compile project(':takephoto_library')
+    compile project(':takephoto_library')
     //沉浸式状态栏
     compile 'com.jaeger.statusbarutil:library:1.4.0'
     //滑动返回

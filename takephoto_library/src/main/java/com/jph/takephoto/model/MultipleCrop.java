@@ -2,8 +2,10 @@ package com.jph.takephoto.model;
 
 import android.app.Activity;
 import android.net.Uri;
+
 import com.jph.takephoto.uitl.TImageFiles;
 import com.jph.takephoto.uitl.TUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

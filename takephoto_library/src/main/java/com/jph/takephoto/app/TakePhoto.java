@@ -3,6 +3,7 @@ package com.jph.takephoto.app;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
 import com.jph.takephoto.compress.CompressConfig;
 import com.jph.takephoto.model.CropOptions;
 import com.jph.takephoto.model.MultipleCrop;
