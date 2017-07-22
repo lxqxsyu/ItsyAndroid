@@ -1,7 +1,7 @@
 package com.guohe.ltsyandroid.manage.rxbus;
 
 import com.guohe.ltsyandroid.manage.rxbus.bean.BaseBusEvent;
-import com.guohe.ltsyandroid.util.ToastUtil;
+import com.guohe.ltsyandroid.util.LogUtil;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -105,7 +105,8 @@ public class RxBus {
                 .subscribe(onNext, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        ToastUtil.showToast(throwable.getMessage(), ToastUtil.ToastType.ERROR);
+                        LogUtil.d(throwable.getMessage());
+                        //ToastUtil.showToast(throwable.getMessage(), ToastUtil.ToastType.ERROR);
                     }
                 });
         return subscription;
@@ -117,7 +118,8 @@ public class RxBus {
                 .subscribe(onNext, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        ToastUtil.showToast(throwable.getMessage(), ToastUtil.ToastType.ERROR);
+                        LogUtil.d(throwable.getMessage());
+                        //ToastUtil.showToast(throwable.getMessage(), ToastUtil.ToastType.ERROR);
                     }
                 });
         return subscription;

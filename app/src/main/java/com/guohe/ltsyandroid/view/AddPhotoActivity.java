@@ -6,11 +6,13 @@ import android.media.ExifInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -20,7 +22,7 @@ import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.manage.config.GlobalConfigManage;
 import com.guohe.ltsyandroid.util.FrescoUtils;
 import com.guohe.ltsyandroid.util.LogUtil;
-import com.guohe.ltsyandroid.util.ToastUtil;
+import com.guohe.ltsyandroid.util.SnackbarUtils;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
@@ -34,6 +36,7 @@ import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import me.gujun.android.taggroup.TagGroup;
@@ -52,6 +55,12 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
     private ImageButton mAddPhotoEditButton;
     private SimpleDraweeView mAddPhotoImage;
     private Button mAddPhotoTagButton;
+    private TextView mChooseCategoryText;
+    private TextView mChooseDeviceText;
+    private TextView mPhotoDescriptText;
+    private ArrayList<String> mPhotoExifs = new ArrayList<>();
+
+    private String mPhotoDescript;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -85,6 +94,9 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
         mAddPhotoEditButton.setOnClickListener(this);
         mAddPhotoTagButton = getView(R.id.addphoto_tag_button);
         mAddPhotoTagButton.setOnClickListener(this);
+        mChooseCategoryText = getView(R.id.addphoto_category_text);
+        mChooseDeviceText = getView(R.id.addphoto_device_text);
+        mPhotoDescriptText = getView(R.id.addphoto_descript_text);
 
         getView(R.id.addphoto_descript).setOnClickListener(this);
         getView(R.id.addphoto_category).setOnClickListener(this);
@@ -152,32 +164,52 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
                 mTakePhoto.onPickFromDocuments();
                 break;
             case R.id.addphoto_tag_button:
-                /*new MaterialDialog.Builder(this)
-                        .title("添加标签")
-                        .content("给你的作品添加标签，更多人可以看到")
-                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL)
-                        .input("请输入...", "", new MaterialDialog.InputCallback() {
-                            @Override
-                            public void onInput(MaterialDialog dialog, CharSequence input) {
-                                LogUtil.d("setTag == " + input);
-                                mTagGroup.setTag(input);
-                                mTagGroup.submitTag();
-                            }
-                       }).show();*/
                 if(mTagGroup.getTags().length >= 5){
-                    ToastUtil.showToast("最多添加5个标签");
+                    SnackbarUtils.with(view)
+                            .setMessage("最多添加5个标签")
+                            .showWarning();
                     return;
                 }
                 mTagGroup.submitTag();
                 break;
             case R.id.addphoto_descript:
-                AddPhotoDescriptActivity.startActivity(this);
+                //AddPhotoDescriptActivity.startActivity(this);
+                new MaterialDialog.Builder(this)
+                        .title("添加描述")
+                        .content("每件作品都有它的生命和灵魂，表达一下吧")
+                        .inputRangeRes(20, 100, R.color.colorSecondaryDark)
+                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL)
+                        .input("请描述...", "", new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(MaterialDialog dialog, CharSequence input) {
+                                mPhotoDescript = input.toString();
+                                mPhotoDescriptText.setText(mPhotoDescript.length() + "字描述");
+                            }
+                       }).show();
                 break;
             case R.id.addphoto_category:
-                AddPhotoCategoryActivity.startActivity(this);
+                //AddPhotoCategoryActivity.startActivity(this);
+                new MaterialDialog.Builder(this)
+                        .title("作品分类")
+                        .items(R.array.photo_category)
+                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                mChooseCategoryText.setText(text);
+                                return true;
+                            }
+                        })
+                        .positiveText("确定选择")
+                        .show();
                 break;
             case R.id.addphoto_divice:
-                AddPhotoChooseCameraActivity.startActivity(this);
+                if(mPhotoExifs.isEmpty()){
+                    SnackbarUtils.with(view)
+                            .setMessage("请先上传作品")
+                            .showWarning();
+                    return;
+                }
+                PhotoExifActivity.startActivity(this, mPhotoExifs);
                 break;
             case R.id.addphoto_address:
                 AddPhotoAddressActivity.startActivity(this);
@@ -242,33 +274,33 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
         mAddPhotoButton.setVisibility(View.GONE);
         mAddPhotoEditButton.setVisibility(View.VISIBLE);
         FrescoUtils.loadFile(mAddPhotoImage, imgPath, null, width, height, null);
+        mPhotoExifs.clear();
         try {
             ExifInterface exifInterface = new ExifInterface(imgPath);
             String make = exifInterface.getAttribute(ExifInterface.TAG_MAKE);  //设备品牌
             String model = exifInterface.getAttribute(ExifInterface.TAG_MODEL); //设备型号，整形表示，在ExifInterface中有常量对应表示
-            String flash = exifInterface.getAttribute(ExifInterface.TAG_FLASH);//闪光灯
             String imgHeight = exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH); //图片高度
             String imgWidth = exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH); //图片宽度
-            String latitude = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE); //纬度
-            String longitude = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE); //经度
-            // exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF); //纬度名（N or S）
-            // exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF); //经度名（E or W）
             String exposureTime = exifInterface.getAttribute(ExifInterface.TAG_EXPOSURE_TIME); //曝光时间
             String aperture = exifInterface.getAttribute(ExifInterface.TAG_APERTURE); //光圈值
             String iso = exifInterface.getAttribute(ExifInterface.TAG_ISO); //ISO感光度
-            String timestamp = exifInterface.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP); //时间戳
+            String datetime = exifInterface.getAttribute(ExifInterface.TAG_DATETIME); //时间
             String whiteBalance = exifInterface.getAttribute(ExifInterface.TAG_WHITE_BALANCE); //白平衡
             String focalLength = exifInterface.getAttribute(ExifInterface.TAG_FOCAL_LENGTH); //焦距
 
-            LogUtil.d("设备品牌： = " + make);
-            LogUtil.d("设备型号： = " + model);
-            LogUtil.d("曝光时间： = " + exposureTime);
-            LogUtil.d("光圈值： = " + aperture);
-            LogUtil.d("iso = " + iso);
-            LogUtil.d("白平衡 = " + whiteBalance);
-            LogUtil.d("焦距 = " + focalLength);
-            LogUtil.d("经度 = " + latitude);
-            LogUtil.d("维度");
+            mPhotoExifs.add("设备名称#" + make);
+            mPhotoExifs.add("设备型号#" + model);
+            mPhotoExifs.add("图片高度#" + imgHeight);
+            mPhotoExifs.add("图片宽度#" + imgWidth);
+            mPhotoExifs.add("曝光时间#" + exposureTime);
+            mPhotoExifs.add("光圈值#" + aperture);
+            mPhotoExifs.add("iso#" + iso);
+            mPhotoExifs.add("白平衡#" + whiteBalance);
+            mPhotoExifs.add("焦距#" + focalLength);;
+            mPhotoExifs.add("拍摄时间#" + datetime);
+            if(!mPhotoExifs.isEmpty()){
+                mChooseDeviceText.setText("已获取");
+            }
             //http://blog.csdn.net/u011002668/article/details/51490712
         } catch (IOException e) {
             e.printStackTrace();
