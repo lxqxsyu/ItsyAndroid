@@ -24,6 +24,17 @@
         android:supportsRtl="true"
         android:name=".CustomeApplication"
         android:theme="@style/AppNoActionbarTheme">
+
+        <!--<activity android:name=".view.DebugActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="Debug界面">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
         <activity
             android:name=".view.SplashActivity"
             android:screenOrientation="portrait"
@@ -65,6 +76,51 @@
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
             android:label="拍摄地点"/>
+
+        <activity android:name=".view.CommentActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="评论"/>
+
+        <activity android:name=".view.EditPhotoCollectionActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="编辑图集"/>
+
+        <activity android:name=".view.PersonalPhotoActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="个人作品"/>
+
+        <activity android:name=".view.PersonalCollectionActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="个人图集"/>
+
+        <activity android:name=".view.MyFavoriteActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="我的收藏"/>
+
+        <activity android:name=".view.MyFollowedActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="我的关注"/>
+
+        <activity android:name=".view.FollowdMeActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="关注我的"/>
+
+        <activity android:name=".view.PersonalPageActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="个人主页"/>
+
+        <activity android:name=".view.FeedbackActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="意见反馈"/>
 
         <activity android:name=".view.SearchActivity"
             android:screenOrientation="portrait"

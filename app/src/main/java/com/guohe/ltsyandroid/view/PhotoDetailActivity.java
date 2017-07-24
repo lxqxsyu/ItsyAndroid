@@ -3,20 +3,23 @@ package com.guohe.ltsyandroid.view;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.support.annotation.LayoutRes;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.AppBarLayout;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
+import com.guohe.ltsyandroid.custome.FluidLayout;
 import com.guohe.ltsyandroid.manage.config.GlobalConfigManage;
+import com.guohe.ltsyandroid.util.DimenUtil;
 import com.guohe.ltsyandroid.util.FrescoUtils;
-import com.guohe.ltsyandroid.view.adapter.CommentListAdapter;
+import com.guohe.ltsyandroid.util.LogUtil;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
 import com.jaeger.library.StatusBarUtil;
 import com.joaquimley.faboptions.FabOptions;
@@ -30,10 +33,12 @@ import java.util.List;
 
 public class PhotoDetailActivity extends BaseActivity implements View.OnClickListener{
 
-    private CollapsingToolbarLayout mToolbarLayout;
     private SimpleDraweeView mDetailPhoto;
-    private RecyclerView mRecyclerView;
-    private CommentListAdapter mAdapter;
+    private FluidLayout mFluidLayout;
+    private AppBarLayout mAppBarLayout;
+    private boolean mValuesCalculatedAlready = false;
+    private int mAppBarLayoutHeight;
+    private FabOptions mFabOptions;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -63,21 +68,58 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initView() {
-        mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         mDetailPhoto = getView(R.id.photodetail_photo);
-        mRecyclerView = getView(R.id.photo_detail_commentlist);
-        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
-        fabOptions.setButtonsMenu(R.menu.photo_option_menu);
-        fabOptions.setOnClickListener(this);
-
-        bindView();
+        mFluidLayout = getView(R.id.fluid_layout);
+        mAppBarLayout = getView(R.id.app_bar);
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (!mValuesCalculatedAlready) {
+                    mAppBarLayoutHeight = mAppBarLayout.getHeight();
+                    mValuesCalculatedAlready = true;
+                }
+                LogUtil.d("verticalOffset == " + verticalOffset);
+                if(Math.abs(verticalOffset) <= mAppBarLayoutHeight / 2){
+                    mFabOptions.setAlpha(1);
+                }else if(Math.abs(verticalOffset) >= mAppBarLayoutHeight - DimenUtil.dp2px(40)){
+                    mFabOptions.setAlpha(0);
+                }else {
+                    float alpha = (mAppBarLayoutHeight + verticalOffset) / (float) mAppBarLayoutHeight;
+                    mFabOptions.setAlpha(alpha);
+                }
+            }
+        });
+        mFabOptions = (FabOptions) findViewById(R.id.fab_options);
+        mFabOptions.setButtonsMenu(R.menu.photo_option_menu);
+        mFabOptions.setOnClickListener(this);
+        FluidLayout.LayoutParams params = new FluidLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(12, 12, 12, 12);
+        genTag();
     }
 
-    private void bindView() {
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new CommentListAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
+    private void genTag() {
+        mFluidLayout.removeAllViews();
+        mFluidLayout.setGravity(Gravity.TOP);
+        for (int i = 0; i < 5; i++) {
+            TextView tv = new TextView(this);
+            tv.setText("这里是标签内容");
+            tv.setTextSize(13);
+            tv.setHeight(DimenUtil.dp2px(20));
+            tv.setGravity(Gravity.CENTER);
+            tv.setPadding(10, 0, 0, 10);
+            tv.setBackgroundResource(R.drawable.add_photo_tag_bg);
+            tv.setTextColor(Color.parseColor("#ffffff"));
+
+            FluidLayout.LayoutParams params = new FluidLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(12, 12, 12, 12);
+            mFluidLayout.addView(tv, params);
+        }
     }
 
     @Override
@@ -87,20 +129,6 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
                     @Override
                     public void onSuccess(Bitmap bitmap) {
                         if(bitmap == null) return;
-                        // Palette的部分
-                       /* Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-                            @Override
-                            public void onGenerated(Palette palette) {
-                                Palette.Swatch vibrant = palette.getVibrantSwatch();
-                                mToolbarLayout.setContentScrimColor(colorBurn(vibrant.getRgb()));
-                                //mPagerSlidingTabStrip.setTextColor(vibrant.getTitleTextColor());
-                                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                                    Window window = getWindow();
-                                    window.setStatusBarColor(colorBurn(vibrant.getRgb()));
-                                    window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
-                                }
-                            }
-                        });*/
                         int width = bitmap.getWidth();
                         int height = bitmap.getHeight();
                         if(width > height) {

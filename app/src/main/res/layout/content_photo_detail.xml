@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:background="@android:color/white"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
             android:orientation="vertical">
 
             <TextView
@@ -41,8 +43,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:text="这幅画是我站在喜马拉雅山顶拍的，酷不酷？"
+                android:layout_marginTop="10dip"
+                android:lineSpacingMultiplier="1.5"
+                android:text="这幅画是我站在喜马拉雅山顶拍的，酷不酷？这幅画是我站在喜马拉雅山顶拍的，酷不酷？这幅画是我站在喜马拉雅山顶拍的，酷不酷？这幅画是我站在喜马拉雅山顶拍的，酷不酷？"
                 android:textSize="14sp"
                 android:textColor="@android:color/primary_text_light"/>
 
@@ -64,21 +67,59 @@
                     android:layout_height="30dip"
                     android:layout_marginLeft="15dip"
                     android:text="打赏"
+                    android:visibility="gone"
                     android:textColor="@android:color/white"
                     android:layout_marginTop="8dip"
                     android:background="@drawable/secondary_light_2dp_round_bg"/>
             </LinearLayout>
+
+            <com.guohe.ltsyandroid.custome.FluidLayout
+                android:id="@+id/fluid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dip"/>
         </LinearLayout>
         </android.support.v7.widget.CardView>
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:padding="15dip"
+            android:orientation="horizontal">
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/photo_detail_commentlist"
-            android:background="@android:color/white"
-            android:layout_marginTop="5dip"
+            <EditText
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@drawable/comment_input_edit_bg"
+                android:padding="5dip"
+                android:textSize="14sp"
+                android:textColor="@android:color/secondary_text_light"
+                android:hint="说说你的感受..."
+                android:textColorHint="@android:color/secondary_text_light_nodisable"
+                android:layout_weight="1"/>
+            
+            <Button
+                android:layout_width="60dip"
+                android:layout_height="40dip"
+                android:layout_marginLeft="10dip"
+                android:text="评论"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:background="@drawable/add_photo_tag_bg"/>
+        </LinearLayout>
+        
+        <include layout="@layout/item_comment_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+        <include layout="@layout/item_comment_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+        <include layout="@layout/item_comment_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
