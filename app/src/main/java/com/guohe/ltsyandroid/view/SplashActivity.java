@@ -19,7 +19,10 @@ import com.guohe.ltsyandroid.view.base.BaseActivity;
 import com.jaeger.library.StatusBarUtil;
 import com.wou.commonutils.ScreenSizeUtil;
 
+import org.polaric.colorful.Colorful;
+
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by 水寒 on 2017/7/14.
@@ -30,6 +33,7 @@ public class SplashActivity extends BaseActivity{
     private static final int SPLASH_TIME = 3000;        //闪屏时间
     private static final int HAND_START_INIT = 0x0001;  //开始初始化操作
     private static final int HAND_TURN_NEXT = 0x0002;   //跳转到下一个界面
+    private static final int HAND_LOAD_BITMAP = 0x0003;  //加载了图片
 
     private long mStartTime;  //开始启动页时间
 
@@ -55,6 +59,9 @@ public class SplashActivity extends BaseActivity{
                 case HAND_TURN_NEXT:
                     turnToOtherView();
                     break;
+                case HAND_LOAD_BITMAP:
+                    setBitmap((Bitmap)msg.obj);
+                    break;
             }
         }
     };
@@ -70,6 +77,21 @@ public class SplashActivity extends BaseActivity{
      */
     private void doInit(){
         //mGlobalPresenter.requestServerConfig();
+        if(GlobalConfigManage.getInstance().getRandomTheme()) {
+            Colorful.ThemeColor[] themeColors = Colorful.ThemeColor.values();
+            Random random = new Random();
+            int primaryIndex = random.nextInt(themeColors.length);
+            int secondaryIndex = random.nextInt(themeColors.length);
+            while (secondaryIndex == primaryIndex) {
+                secondaryIndex = random.nextInt(themeColors.length);
+            }
+            Colorful.config(SplashActivity.this)
+                    .primaryColor(themeColors[primaryIndex])
+                    .accentColor(themeColors[secondaryIndex])
+                    .translucent(false)
+                    .dark(false)
+                    .apply();
+        }
     }
 
     @Override
@@ -111,6 +133,8 @@ public class SplashActivity extends BaseActivity{
                         });
                         int width = bitmap.getWidth();
                         int height = bitmap.getHeight();
+                        Message message = Message.obtain();
+                        message.what = HAND_LOAD_BITMAP;
                         if(width > height) {
                             // 创建操作图片用的matrix对象
                             Matrix matrix = new Matrix();
@@ -119,10 +143,11 @@ public class SplashActivity extends BaseActivity{
                             //创建新的图片
                             Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
                                     width, height, matrix, true);
-                            setBitmap(resizedBitmap);
+                            message.obj = resizedBitmap;
                         }else{
-                            setBitmap(bitmap);
+                            message.obj = bitmap;
                         }
+                        mHandler.sendMessage(message);
                     }
 
                     @Override
@@ -133,6 +158,7 @@ public class SplashActivity extends BaseActivity{
     }
 
     private void setBitmap(Bitmap bitmap){
+        if(bitmap == null) return;
         mSplashImage.setImageBitmap(bitmap);
     }
 

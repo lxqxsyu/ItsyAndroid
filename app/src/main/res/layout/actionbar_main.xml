@@ -5,37 +5,26 @@
     android:gravity="center_vertical"
     android:layout_height="48dip">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/actionbar_fragment1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="36dip"
+            android:layout_height="36dip"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_account_circle_white_36dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="36dip"
-                android:layout_height="36dip"
-                android:scaleType="centerInside"
-                android:src="@mipmap/ic_account_circle_white_36dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"
-                android:text="这是昵称"/>
-        </LinearLayout>
-
-        <com.miguelcatalan.materialsearchview.MaterialSearchView
-            android:id="@+id/search_view"
-            style="@style/MaterialSearchViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:text="这是昵称"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/actionbar_fragment3"
@@ -104,12 +93,11 @@
 
         <ImageButton
             android:id="@+id/personal_setting_button"
-            android:layout_width="wrap_content"
+            android:layout_width="48dip"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             android:layout_alignParentRight="true"
             android:background="@null"
-            android:paddingLeft="20dip"
             android:tint="@android:color/white"
             app:srcCompat="@drawable/ic_settings_24px"/>
     </RelativeLayout>

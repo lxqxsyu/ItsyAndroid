@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_flag_24px"/>
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_supervisor_account_24px"/>
                 <TextView
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_favorite_24px"/>
 
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_insert_photo_24px"/>
                 <TextView
@@ -200,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -223,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_style_24px"/>
                 <TextView
@@ -243,7 +243,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -266,7 +266,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_person_pin_circle_24px"/>
                 <TextView
@@ -286,7 +286,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -309,7 +309,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_message_24px"/>
                 <TextView
@@ -329,7 +329,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -352,7 +352,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_call_24px"/>
                 <TextView
@@ -371,7 +371,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -394,7 +394,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     android:layout_marginRight="10dip"
                     app:srcCompat="@drawable/ic_feedback_24px"/>
                 <TextView
@@ -414,7 +414,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
+                    android:tint="?attr/colorPrimary"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>

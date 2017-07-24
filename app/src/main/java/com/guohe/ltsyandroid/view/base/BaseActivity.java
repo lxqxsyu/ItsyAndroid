@@ -18,6 +18,8 @@ import com.r0adkll.slidr.model.SlidrConfig;
 import com.r0adkll.slidr.model.SlidrListener;
 import com.r0adkll.slidr.model.SlidrPosition;
 
+import org.polaric.colorful.Colorful;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initWindow();
+        Colorful.applyTheme(this, false);
         setContentView(getContentView());
         initView();
         initPresenter(mPresenters);

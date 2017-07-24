@@ -1,8 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dip"
+        android:textSize="12dip"
+        android:gravity="center"
+        android:text="注意：主题设置需要重启应用才可以生效"
+        android:textColor="@android:color/white"
+        android:background="@color/colorSecondary"/>
+    <LinearLayout
+        android:id="@+id/setting_theme_dark"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="随机主题"/>
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/setting_theme_dark_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="关"
+            android:textColor="@android:color/primary_text_light_nodisable"/>
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/setting_theme_primary"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="主题首要颜色"/>
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <View
+            android:id="@+id/setting_theme_primary_value"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            />
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/setting_theme_second"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="主题次要颜色"/>
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <View
+            android:id="@+id/setting_theme_second_value"
+            android:layout_width="20dip"
+            android:layout_height="20dip"/>
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/setting_theme_recover"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="恢复默认主题"/>
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_splite_line"/>
+    <LinearLayout
+        android:id="@+id/setting_catch"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="清理缓存"/>
+
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_splite_line"/>
+    <LinearLayout
+        android:id="@+id/setting_check_update"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="检查更新"/>
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_splite_line"/>
+    <LinearLayout
+        android:id="@+id/setting_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="我要评价"/>
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_splite_line"/>
+
+    <ImageView
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dip"
+        android:background="@color/app_splite_line"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dip"
+        android:textColor="@android:color/primary_text_light_nodisable"
+        android:text="版本 1.0.1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="官方QQ群：734343433"
+        android:layout_marginTop="5dip"
+        android:textColor="@android:color/secondary_text_dark_nodisable"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text=" @copyright 西安果核网络科技有限公司 "
+        android:layout_marginBottom="5dip"
+        android:textColor="@android:color/secondary_text_dark_nodisable"/>
 </LinearLayout>

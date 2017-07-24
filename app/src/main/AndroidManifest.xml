@@ -37,7 +37,7 @@
 
         <activity android:name=".view.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/MainActivityTheme"/>
 
         <activity android:name=".view.PhotoDetailActivity"
             android:screenOrientation="portrait"/>
@@ -65,6 +65,10 @@
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
             android:label="拍摄地点"/>
+
+        <activity android:name=".view.SearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionbarTheme"/>
 
         <!--高德地图-->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="34a05e779c0571897e8000363f8e68d2">

@@ -78,6 +78,7 @@ dependencies {
     compile files('libs/AMap3DMap_5.2.1_AMapNavi_5.2.1_AMapSearch_5.2.1_AMapLocation_3.4.1_20170710.jar')
     //搜索框
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
+    compile 'com.github.arimorty:floatingsearchview:2.1.1'
     //fresco
     compile 'com.facebook.fresco:fresco:0.14.1'
     compile 'com.facebook.fresco:animated-gif:0.14.1'
@@ -93,4 +94,6 @@ dependencies {
     compile 'me.gujun.android.taggroup:library:1.4@aar'
     //对话框
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    //colorful-theme
+    compile project(':colorful')
 }

@@ -19,6 +19,7 @@ public class GlobalConfigManage extends BaseConfigManage{
     private String mChannelName;    //渠道名称
     private int mScreenWidth;       //屏幕宽
     private int mScreenHeight;      //屏幕高
+    private boolean mRandomTheme;   //是否随机主题
 
     /**
      * 配置相关的key
@@ -29,6 +30,7 @@ public class GlobalConfigManage extends BaseConfigManage{
         String KEY_CHANNEL_NAME = "channel_name";
         String KEY_SCREEN_WIDTH = "screen_width";
         String KEY_SCREEN_HEIGHT = "screen_height";
+        String KEY_RANDOM_THEME = "random_theme";
     }
 
     private GlobalConfigManage(String shareName) {
@@ -40,6 +42,7 @@ public class GlobalConfigManage extends BaseConfigManage{
         mChannelName = mSharePreference.getString(configKeys.KEY_CHANNEL_NAME, "form");
         mScreenWidth = mSharePreference.getInt(configKeys.KEY_SCREEN_WIDTH, 0);
         mScreenHeight = mSharePreference.getInt(configKeys.KEY_SCREEN_HEIGHT, 0);
+        mRandomTheme = mSharePreference.getBoolean(configKeys.KEY_RANDOM_THEME, false);
     }
 
     public static GlobalConfigManage getInstance(){
@@ -101,5 +104,14 @@ public class GlobalConfigManage extends BaseConfigManage{
 
     public int getScreenHeight(){
         return mScreenHeight;
+    }
+
+    public void setRandomTheme(boolean random){
+        mRandomTheme = random;
+        setConfig(configKeys.KEY_RANDOM_THEME, mRandomTheme);
+    }
+
+    public boolean getRandomTheme(){
+        return mRandomTheme;
     }
 }

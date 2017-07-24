@@ -1,1 +1,1 @@
-include ':app', ':HeaderAndFooterRecyclerView', ':commonutils', ':takephoto_library'
+include ':app', ':HeaderAndFooterRecyclerView', ':commonutils', ':takephoto_library', ':colorful'
