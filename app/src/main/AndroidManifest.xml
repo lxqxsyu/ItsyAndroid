@@ -24,6 +24,17 @@
         android:supportsRtl="true"
         android:name=".CustomeApplication"
         android:theme="@style/AppNoActionbarTheme">
+
+        <!--<activity android:name=".view.DebugActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="Debug界面">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
         <activity
             android:name=".view.SplashActivity"
             android:screenOrientation="portrait"
@@ -75,6 +86,11 @@
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
             android:label="作品分类"/>
+
+        <activity android:name=".view.CommentActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="评论"/>
 
         <!--高德地图-->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="34a05e779c0571897e8000363f8e68d2">
