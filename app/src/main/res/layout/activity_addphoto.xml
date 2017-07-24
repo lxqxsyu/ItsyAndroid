@@ -95,6 +95,13 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/addphoto_descript_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text=""
+            android:textColor="@android:color/secondary_text_light_nodisable"/>
         <ImageView
             android:layout_width="50dip"
             android:layout_height="match_parent"
@@ -124,6 +131,13 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/addphoto_category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text=""
+            android:textColor="@android:color/secondary_text_light_nodisable"/>
         <ImageView
             android:layout_width="50dip"
             android:layout_height="match_parent"
@@ -148,11 +162,18 @@
             android:textSize="16sp"
             android:layout_marginLeft="15dip"
             android:textColor="@android:color/secondary_text_light"
-            android:text="拍摄器材"/>
+            android:text="图片详情"/>
         <Space
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/addphoto_device_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text=""
+            android:textColor="@android:color/secondary_text_light_nodisable"/>
         <ImageView
             android:layout_width="50dip"
             android:layout_height="match_parent"

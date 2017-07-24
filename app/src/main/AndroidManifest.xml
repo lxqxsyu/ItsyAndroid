@@ -62,36 +62,25 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.AddPhotoDescriptActivity"
-            android:theme="@style/AppCanSlidrTheme"
-            android:label="添加描述"
-            android:screenOrientation="portrait"/>
-
         <activity android:name=".view.SettingActivity"
             android:theme="@style/AppCanSlidrTheme"
             android:label="设置"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.AddPhotoChooseCameraActivity"
+        <activity android:name=".view.PhotoExifActivity"
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
-            android:label="拍摄器材"/>
+            android:label="图片详情"/>
 
         <activity android:name=".view.AddPhotoAddressActivity"
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
             android:label="拍摄地点"/>
 
-        <activity android:name=".view.AddPhotoCategoryActivity"
-            android:theme="@style/AppCanSlidrTheme"
-            android:screenOrientation="portrait"
-            android:label="作品分类"/>
-
         <activity android:name=".view.CommentActivity"
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
             android:label="评论"/>
-
         <!--高德地图-->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="34a05e779c0571897e8000363f8e68d2">
             //开发者申请的key
