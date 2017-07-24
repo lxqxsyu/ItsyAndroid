@@ -3,13 +3,10 @@ package com.guohe.ltsyandroid.view;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
-import com.guohe.ltsyandroid.view.adapter.CommentListAdapter;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
 
 import java.util.List;
@@ -18,10 +15,7 @@ import java.util.List;
  * Created by shuihan on 2017/7/24.
  */
 
-public class CommentActivity extends BaseActivity {
-
-    private RecyclerView mRecyclerView;
-    private CommentListAdapter mAdapter;
+public class FeedbackActivity extends BaseActivity {
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -40,7 +34,7 @@ public class CommentActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_comment;
+        return R.layout.activity_feedback;
     }
 
     @Override
@@ -51,26 +45,6 @@ public class CommentActivity extends BaseActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        mRecyclerView = getView(R.id.photo_commentlist);
-
-        bindView();
-    }
-
-    private void bindView() {
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new CommentListAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                CommentActivity.this.finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -78,8 +52,18 @@ public class CommentActivity extends BaseActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public static void startActivity(Context context){
-        Intent intent = new Intent(context, CommentActivity.class);
+        Intent intent = new Intent(context, FeedbackActivity.class);
         context.startActivity(intent);
     }
 }

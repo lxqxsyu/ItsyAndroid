@@ -38,6 +38,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_followme"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:gravity="center_vertical"
@@ -81,6 +82,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_myfollow"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:gravity="center_vertical"
@@ -124,6 +126,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_favorite"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"
@@ -169,6 +172,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_myphoto"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"
@@ -212,6 +216,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_mycollection"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"
@@ -255,6 +260,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_mymap"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"
@@ -298,6 +304,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_msgcenter"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"
@@ -341,6 +348,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_contactus"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"
@@ -383,6 +391,7 @@
             app:cardBackgroundColor="@color/cardview_dark_background"
             app:cardCornerRadius="0dp">
             <LinearLayout
+                android:id="@+id/personal_menu_feedback"
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:paddingLeft="10dip"

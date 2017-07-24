@@ -67,10 +67,10 @@
             android:label="设置"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.PhotoExifActivity"
+        <!--<activity android:name=".view.PhotoExifActivity"
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
-            android:label="图片详情"/>
+            android:label="图片详情"/>-->
 
         <activity android:name=".view.AddPhotoAddressActivity"
             android:theme="@style/AppCanSlidrTheme"
@@ -81,6 +81,47 @@
             android:theme="@style/AppCanSlidrTheme"
             android:screenOrientation="portrait"
             android:label="评论"/>
+
+        <activity android:name=".view.EditPhotoCollectionActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="编辑图集"/>
+
+        <activity android:name=".view.PersonalPhotoActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="个人作品"/>
+
+        <activity android:name=".view.PersonalCollectionActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="个人图集"/>
+
+        <activity android:name=".view.MyFavoriteActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="我的收藏"/>
+
+        <activity android:name=".view.MyFollowedActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="我的关注"/>
+
+        <activity android:name=".view.FollowdMeActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="关注我的"/>
+
+        <activity android:name=".view.PersonalPageActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="个人主页"/>
+
+        <activity android:name=".view.FeedbackActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="意见反馈"/>
+
         <!--高德地图-->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="34a05e779c0571897e8000363f8e68d2">
             //开发者申请的key

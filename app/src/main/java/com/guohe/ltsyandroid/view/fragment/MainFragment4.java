@@ -14,6 +14,12 @@ import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.util.FrescoUtils;
 import com.guohe.ltsyandroid.view.AddPhotoActivity;
+import com.guohe.ltsyandroid.view.FeedbackActivity;
+import com.guohe.ltsyandroid.view.FollowdMeActivity;
+import com.guohe.ltsyandroid.view.MyFavoriteActivity;
+import com.guohe.ltsyandroid.view.MyFollowedActivity;
+import com.guohe.ltsyandroid.view.PersonalCollectionActivity;
+import com.guohe.ltsyandroid.view.PersonalPhotoActivity;
 import com.guohe.ltsyandroid.view.SettingActivity;
 
 import java.util.List;
@@ -24,7 +30,7 @@ import static com.wou.commonutils.ColorGenerator.colorBurn;
  * Created by 水寒 on 2017/7/14.
  */
 
-public class MainFragment4 extends BaseMainFragment{
+public class MainFragment4 extends BaseMainFragment implements View.OnClickListener{
 
     private SimpleDraweeView mAuthorBg;
     private SimpleDraweeView mAuthorHead;
@@ -67,6 +73,15 @@ public class MainFragment4 extends BaseMainFragment{
         mAuthorBg = getView(R.id.personal_authorbg);
         mAuthorHead = getView(R.id.personal_authorhead);
         mNotifyMsg = getView(R.id.personal_notify_msg);
+        getView(R.id.personal_menu_contactus).setOnClickListener(this);
+        getView(R.id.personal_menu_favorite).setOnClickListener(this);
+        getView(R.id.personal_menu_feedback).setOnClickListener(this);
+        getView(R.id.personal_menu_followme).setOnClickListener(this);
+        getView(R.id.personal_menu_msgcenter).setOnClickListener(this);
+        getView(R.id.personal_menu_mycollection).setOnClickListener(this);
+        getView(R.id.personal_menu_myfollow).setOnClickListener(this);
+        getView(R.id.personal_menu_myphoto).setOnClickListener(this);
+        getView(R.id.personal_menu_mymap).setOnClickListener(this);
         FloatingActionButton fab = getView(R.id.fab_edit);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,5 +111,38 @@ public class MainFragment4 extends BaseMainFragment{
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.personal_menu_contactus:
+
+                break;
+            case R.id.personal_menu_favorite:
+                MyFavoriteActivity.startActivity(this.getContext());
+                break;
+            case R.id.personal_menu_feedback:
+                FeedbackActivity.startActivity(this.getContext());
+                break;
+            case R.id.personal_menu_followme:
+                FollowdMeActivity.startActivity(this.getContext());
+                break;
+            case R.id.personal_menu_msgcenter:
+
+                break;
+            case R.id.personal_menu_mycollection:
+                PersonalCollectionActivity.startActivity(this.getContext());
+                break;
+            case R.id.personal_menu_myfollow:
+                MyFollowedActivity.startActivity(this.getContext());
+                break;
+            case R.id.personal_menu_myphoto:
+                PersonalPhotoActivity.startActivity(this.getContext());
+                break;
+            case R.id.personal_menu_mymap:
+
+                break;
+        }
     }
 }

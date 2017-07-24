@@ -1,5 +1,8 @@
 package com.guohe.ltsyandroid.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Debug;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
@@ -59,5 +62,10 @@ public class DebugActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void startActivity(Context context){
+        Intent intent = new Intent(context, DebugActivity.class);
+        context.startActivity(intent);
     }
 }
