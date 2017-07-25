@@ -102,6 +102,7 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
         getView(R.id.addphoto_category).setOnClickListener(this);
         getView(R.id.addphoto_divice).setOnClickListener(this);
         getView(R.id.addphoto_address).setOnClickListener(this);
+        getView(R.id.addphoto_secret).setOnClickListener(this);
     }
 
     @Override
@@ -213,6 +214,9 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.addphoto_address:
                 AddPhotoAddressActivity.startActivity(this);
+                break;
+            case R.id.addphoto_secret:
+                AddSecretActivity.startActivity(this);
                 break;
         }
     }

@@ -122,6 +122,11 @@
             android:screenOrientation="portrait"
             android:label="意见反馈"/>
 
+        <activity android:name=".view.AddSecretActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="藏悄悄话"/>
+
         <activity android:name=".view.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionbarTheme"/>

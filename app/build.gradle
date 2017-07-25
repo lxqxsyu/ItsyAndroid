@@ -96,4 +96,6 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     //colorful-theme
     compile project(':colorful')
+    //录制声音
+    compile project(':audio_recorder')
 }
