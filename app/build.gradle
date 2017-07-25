@@ -98,4 +98,6 @@ dependencies {
     compile project(':colorful')
     //录制声音
     compile project(':audio_recorder')
+    //幻灯片
+    compile project(':appIntro')
 }

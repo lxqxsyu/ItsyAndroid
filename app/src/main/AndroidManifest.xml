@@ -127,6 +127,16 @@
             android:screenOrientation="portrait"
             android:label="藏悄悄话"/>
 
+        <activity android:name=".view.LoginActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="登录"/>
+
+        <activity android:name=".view.SetUserInfoActivity"
+            android:theme="@style/AppCanSlidrTheme"
+            android:screenOrientation="portrait"
+            android:label="基础信息"/>
+
         <activity android:name=".view.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionbarTheme"/>
