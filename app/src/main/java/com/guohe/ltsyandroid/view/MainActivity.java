@@ -275,6 +275,11 @@ public class MainActivity extends BaseActivity implements PoiSearch.OnPoiSearchL
                 item = menu.findItem(R.id.action_search);
                 mSearchView.setMenuItem(item);
                 mSearchView.setHint("搜索作品");
+                if(MainFragment2.mCurrentType == MainFragment2.TYPE_COLLECTION){
+                    item = menu.findItem(R.id.action_type);
+                    item.setTitle("图集");
+                    item.setIcon(R.drawable.ic_style_24px);
+                }
                 break;
             case 2:
                 break;
