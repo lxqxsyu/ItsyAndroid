@@ -3,6 +3,7 @@ package com.guohe.ltsyandroid.view.fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,8 +22,12 @@ import java.util.List;
 
 public class MainFragment2 extends BaseMainFragment {
 
+    private static final int TYPE_PHOTO = 1;
+    private static final int TYPE_COLLECTION = 2;
+
     private RecyclerView mRecyclerView;
     private PhotoDynamicAdapter mAdapter;
+    private int mCurrentType;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -71,5 +76,24 @@ public class MainFragment2 extends BaseMainFragment {
     @Override
     public void attachActionBarView(View actionbarView) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_type:
+                if("作品".equals(item.getTitle())){
+                    item.setTitle("图集");
+                    item.setIcon(R.drawable.ic_style_24px);
+                    mCurrentType = TYPE_COLLECTION;
+                }else{
+                    item.setTitle("作品");
+                    item.setIcon(R.drawable.ic_insert_photo_24px);
+                    mCurrentType = TYPE_PHOTO;
+                }
+                //bindView();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

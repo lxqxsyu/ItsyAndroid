@@ -103,6 +103,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                         .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                if("随机".equals(text)){
+                                    GlobalConfigManage.getInstance().setRandomTheme(true);
+                                    mThemeDark.setText("开");
+                                }else{
+                                    GlobalConfigManage.getInstance().setRandomTheme(false);
+                                    mThemeDark.setText("关");
+                                }
 
                                 return true;
                             }

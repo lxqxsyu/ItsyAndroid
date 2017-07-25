@@ -3,30 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_action_action_search"
-        android:orderInCategory="100"
-        android:title="@string/abc_search_hint"
-        app:showAsAction="always" />
+           android:id="@+id/action_search"
+           android:icon="@drawable/ic_action_action_search"
+           android:orderInCategory="100"
+           android:title="@string/abc_search_hint"
+           app:showAsAction="always" />
 
-    <item android:id="@+id/main_menu21"
-        app:showAsAction="never"
-        android:orderInCategory="100"
-        android:title="@string/main_menu_text21"/>
-    <item android:id="@+id/main_menu22"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/main_menu_text22"/>
-    <item android:id="@+id/main_menu23"
-        app:showAsAction="never"
-        android:orderInCategory="100"
-        android:title="@string/main_menu_text23"/>
-    <item android:id="@+id/main_menu24"
-        app:showAsAction="never"
-        android:orderInCategory="100"
-        android:title="@string/main_menu_text24"/>
-    <item android:id="@+id/main_menu25"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/main_menu_text25"/>
+       <item
+           android:id="@+id/action_type"
+           android:icon="@drawable/ic_insert_photo_24px"
+           android:orderInCategory="100"
+           android:title="作品"
+           app:showAsAction="always" />
+
+       <item android:id="@+id/main_menu21"
+           app:showAsAction="never"
+           android:orderInCategory="100"
+           android:title="@string/main_menu_text21"/>
+       <item android:id="@+id/main_menu22"
+           android:orderInCategory="100"
+           app:showAsAction="never"
+           android:title="@string/main_menu_text22"/>
+       <item android:id="@+id/main_menu23"
+           app:showAsAction="never"
+           android:orderInCategory="100"
+           android:title="@string/main_menu_text23"/>
+       <item android:id="@+id/main_menu24"
+           app:showAsAction="never"
+           android:orderInCategory="100"
+           android:title="@string/main_menu_text24"/>
+       <item android:id="@+id/main_menu25"
+           android:orderInCategory="100"
+           app:showAsAction="never"
+           android:title="@string/main_menu_text25"/>
 </menu>
