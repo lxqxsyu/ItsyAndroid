@@ -65,6 +65,17 @@ public class DimenUtil {
     }
 
     /**
+     * dip转pix
+     *
+     * @param sp
+     * @return
+     */
+    public static int sp2px(float sp) {
+        float scale = CustomeApplication.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (sp * scale + 0.5f);
+    }
+
+    /**
      * 获取屏幕的宽度和高度
      *
      * @param context

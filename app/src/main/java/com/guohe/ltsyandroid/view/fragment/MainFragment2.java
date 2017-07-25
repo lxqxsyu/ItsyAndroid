@@ -28,7 +28,7 @@ public class MainFragment2 extends BaseMainFragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    public static int mCurrentType;
+    public static int mCurrentType = TYPE_PHOTO;
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
