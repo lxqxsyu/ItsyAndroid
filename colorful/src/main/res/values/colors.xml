@@ -298,4 +298,10 @@
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
 
+    <color name="colorPrimary">#00897b</color>
+    <color name="colorPrimaryDark">#005b4f</color>
+    <color name="colorPrimaryLight">#4ebaaa</color>
+    <color name="colorSecondary">#ff6f00</color>
+    <color name="colorSecondaryDark">#c43e00</color>
+    <color name="colorSecondaryLight">#ffa040</color>
 </resources>

@@ -101,7 +101,7 @@ public class AddSecretActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.add_secret_voice_button:
-
+                recordAudio();
                 break;
             case R.id.secret_save_button:
                 if(StringUtils.isEmpty(mSecretQuestion.getText())){
@@ -125,11 +125,11 @@ public class AddSecretActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    public void recordAudio(View v) {
+    public void recordAudio() {
         AndroidAudioRecorder.with(this)
                 // Required
                 .setFilePath(AUDIO_FILE_PATH)
-                .setColor(ContextCompat.getColor(this, R.color.recorder_bg))
+                .setColor(ContextCompat.getColor(this, R.color.colorSecondary))
                 .setRequestCode(REQUEST_RECORD_AUDIO)
 
                 // Optional
