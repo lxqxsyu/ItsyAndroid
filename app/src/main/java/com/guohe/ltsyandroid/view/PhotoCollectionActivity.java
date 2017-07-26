@@ -2,30 +2,22 @@ package com.guohe.ltsyandroid.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.Toolbar;
+import android.graphics.Color;
+import android.os.Build;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
+import com.guohe.ltsyandroid.util.FrescoUtils;
+import com.guohe.ltsyandroid.view.adapter.CollectionCardAdapter;
 import com.guohe.ltsyandroid.view.base.BaseActivity;
-import com.guohe.ltsyandroid.view.base.BaseFragment;
-import com.r0adkll.slidr.Slidr;
+import com.view.jameson.library.CardScaleHelper;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import static com.wou.commonutils.ColorGenerator.colorBurn;
 
 /**
  * Created by shuihan on 2017/7/18.
@@ -33,9 +25,20 @@ import static com.wou.commonutils.ColorGenerator.colorBurn;
 
 public class PhotoCollectionActivity extends BaseActivity {
 
-    private ViewPager mViewPager;
-    public Toolbar mToolbar;
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private RecyclerView mRecyclerView;
+    private SimpleDraweeView mBlurView;
+    private CardScaleHelper mCardScaleHelper = null;
+    private List<Integer> mList = new ArrayList<>();
+    private CollectionCardAdapter mAdapter;
+        //return  activity_photocollection;
+        //photocollection_card_item
+
+
+
+    public static void startActivity(Context context){
+        Intent intent = new Intent(context, PhotoCollectionActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     public void initPresenter(List<MvpPresenter> presenters) {
@@ -48,131 +51,73 @@ public class PhotoCollectionActivity extends BaseActivity {
     }
 
     @Override
+    protected void initWindow() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    @Override
     protected int getContentView() {
         return R.layout.activity_photocollection;
     }
 
     @Override
     protected void initView() {
-        Slidr.attach(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar = toolbar;
-        setSupportActionBar(toolbar);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container_viewpager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mRecyclerView = (RecyclerView) findViewById(R.id.photo_collection_recyclerView);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new CollectionCardAdapter(mList);
+        mRecyclerView.setAdapter(mAdapter);
+        // mRecyclerView绑定scale效果
+        mCardScaleHelper = new CardScaleHelper();
+        mCardScaleHelper.setCurrentItemPos(2);
+        mCardScaleHelper.attachToRecyclerView(mRecyclerView);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_comment);
-        fab.setOnClickListener(new View.OnClickListener() {
+        initBlurBackground();
+    }
+
+    private void initBlurBackground() {
+        mBlurView = (SimpleDraweeView) findViewById(R.id.collection_blurView);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //notifyBackgroundChange();
+                }
             }
         });
-
+        FrescoUtils.loadRes(mBlurView, R.mipmap.ic_default_collection_bg, null, 0, 0, null);
+        //notifyBackgroundChange();
     }
+
+   /* private void notifyBackgroundChange() {
+        if (mLastPos == mCardScaleHelper.getCurrentItemPos()) return;
+        mLastPos = mCardScaleHelper.getCurrentItemPos();
+        final int resId = mList.get(mCardScaleHelper.getCurrentItemPos());
+        mBlurView.removeCallbacks(mBlurRunnable);
+        mBlurRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
+                ViewSwitchUtils.startSwitchBackgroundAnim(mBlurView, BlurBitmapUtils.getBlurBitmap(mBlurView.getContext(), bitmap, 15));
+            }
+        };
+        mBlurView.postDelayed(mBlurRunnable, 500);
+    }*/
 
     @Override
     protected void initData() {
-
-    }
-
-    public static void startActivity(Context context){
-        Intent intent = new Intent(context, PhotoCollectionActivity.class);
-        context.startActivity(intent);
-    }
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PhotoCollectionFragment extends BaseFragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static PhotoCollectionFragment newInstance(int sectionNumber) {
-            PhotoCollectionFragment fragment = new PhotoCollectionFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
+        for (int i = 0; i < 10; i++) {
+            mList.add(R.mipmap.test_image1);
+            mList.add(R.mipmap.test_image4);
+            mList.add(R.mipmap.test_image6);
         }
-
-        @Override
-        public void initPresenter(List<MvpPresenter> presenters) {
-
-        }
-
-        @Override
-        public void turnToOtherView() {
-
-        }
-
-        @Override
-        protected int getContentView() {
-            return R.layout.fragment_photocollection;
-        }
-
-        @Override
-        protected void initData() {
-
-        }
-
-        @Override
-        protected void initView(View view) {
-            ImageView imageView = (ImageView) getView(R.id.showimage_image);
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.test_image1);
-            imageView.setImageBitmap(bitmap);
-
-            // Palette的部分
-            Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-                @Override
-                public void onGenerated(Palette palette) {
-                    Palette.Swatch vibrant = palette.getVibrantSwatch();
-                    //mPagerSlidingTabStrip.setTextColor(vibrant.getTitleTextColor());
-                    PhotoCollectionActivity activity  = (PhotoCollectionActivity) PhotoCollectionFragment.this.getActivity();
-                    if (activity != null && android.os.Build.VERSION.SDK_INT >= 21) {
-                        Window window = activity.getWindow();
-                        int burnColor = colorBurn(vibrant.getRgb());
-                        window.setStatusBarColor(burnColor);
-                        window.setNavigationBarColor(burnColor);
-                        activity.mToolbar.setBackgroundColor(burnColor);
-                    }
-                }
-            });
-        }
-    }
-
-
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return PhotoCollectionFragment.newInstance(position + 1);
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
-        }
+        mAdapter.notifyDataSetChanged();
     }
 }

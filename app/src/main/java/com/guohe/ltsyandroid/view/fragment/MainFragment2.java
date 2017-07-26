@@ -105,11 +105,11 @@ public class MainFragment2 extends BaseMainFragment {
             case R.id.action_type:
                 if("作品".equals(item.getTitle())){
                     item.setTitle("图集");
-                    item.setIcon(R.drawable.ic_style_24px);
+                    item.setIcon(R.mipmap.ic_style_white_24dp);
                     mCurrentType = TYPE_COLLECTION;
                 }else{
                     item.setTitle("作品");
-                    item.setIcon(R.drawable.ic_insert_photo_24px);
+                    item.setIcon(R.mipmap.ic_insert_photo_white_24dp);
                     mCurrentType = TYPE_PHOTO;
                 }
                 bindView();

@@ -1,1 +1,1 @@
-include ':app', ':HeaderAndFooterRecyclerView', ':commonutils', ':takephoto_library', ':colorful', ':audio_recorder', ':appIntro'
+include ':app', ':HeaderAndFooterRecyclerView', ':commonutils', ':takephoto_library', ':colorful', ':audio_recorder', ':card_slide', ':recyclerview_gallery'

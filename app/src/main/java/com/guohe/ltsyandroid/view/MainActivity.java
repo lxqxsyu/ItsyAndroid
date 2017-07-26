@@ -2,7 +2,6 @@ package com.guohe.ltsyandroid.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -12,18 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.amap.api.maps.AMap;
-import com.amap.api.maps.model.BitmapDescriptorFactory;
-import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.MultiPointItem;
-import com.amap.api.maps.model.MultiPointOverlay;
-import com.amap.api.maps.model.MultiPointOverlayOptions;
-import com.amap.api.services.core.PoiItem;
-import com.amap.api.services.help.Inputtips;
-import com.amap.api.services.help.InputtipsQuery;
-import com.amap.api.services.help.Tip;
-import com.amap.api.services.poisearch.PoiResult;
-import com.amap.api.services.poisearch.PoiSearch;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.util.LogUtil;
@@ -40,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends BaseActivity implements PoiSearch.OnPoiSearchListener, Inputtips.InputtipsListener {
+public class MainActivity extends BaseActivity{
 
     private int mCurrentIndex = 0;   //当前选择
     private BaseMainFragment mCurrentFragment;
@@ -108,15 +95,7 @@ public class MainActivity extends BaseActivity implements PoiSearch.OnPoiSearchL
             public boolean onQueryTextSubmit(String keyword) {
                 if(mCurrentIndex == 0) {
                     LogUtil.d("Search_keyword == " + keyword);
-                    PoiSearch.Query query = new PoiSearch.Query(keyword, "110000", "");
-                    //keyWord表示搜索字符串，
-                    //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
-                    //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
-                    query.setPageSize(10);// 设置每页最多返回多少条poiitem
-                    query.setPageNum(1);//设置查询页码
-                    PoiSearch poiSearch = new PoiSearch(MainActivity.this, query);
-                    poiSearch.setOnPoiSearchListener(MainActivity.this);
-                    poiSearch.searchPOIAsyn();
+
                 }
                 return true;
             }
@@ -124,13 +103,7 @@ public class MainActivity extends BaseActivity implements PoiSearch.OnPoiSearchL
             @Override
             public boolean onQueryTextChange(String newText) {
                 if(mCurrentIndex == 0) {
-                    //Do some magic
-                    //第二个参数传入null或者“”代表在全国进行检索，否则按照传入的city进行检索
-                    InputtipsQuery inputquery = new InputtipsQuery(newText, "");
-                    inputquery.setCityLimit(true);//限制在当前城市
-                    Inputtips inputTips = new Inputtips(MainActivity.this, inputquery);
-                    inputTips.setInputtipsListener(MainActivity.this);
-                    inputTips.requestInputtipsAsyn();
+
                 }
                 return true;
             }
@@ -278,7 +251,7 @@ public class MainActivity extends BaseActivity implements PoiSearch.OnPoiSearchL
                 if(MainFragment2.mCurrentType == MainFragment2.TYPE_COLLECTION){
                     item = menu.findItem(R.id.action_type);
                     item.setTitle("图集");
-                    item.setIcon(R.drawable.ic_style_24px);
+                    item.setIcon(R.mipmap.ic_style_white_24dp);
                 }
                 break;
             case 2:
@@ -305,53 +278,5 @@ public class MainActivity extends BaseActivity implements PoiSearch.OnPoiSearchL
     public boolean onOptionsItemSelected(MenuItem item) {
         mCurrentFragment.onOptionsItemSelected(item);
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onPoiSearched(PoiResult poiResult, int j) {
-        List<PoiItem> pitems = poiResult.getPois();
-        //poiResult.get
-        for (int i = 0; i < pitems.size(); i++) {
-            //创建MultiPointItem存放，海量点中某单个点的位置及其他信息
-            PoiItem pi = pitems.get(i);
-            //LogUtil.d("adNmae == " + pi.getAdName());
-            //LogUtil.d("city == " + pi.getCityName());
-        }
-        if(mCurrentIndex == 0) {
-            MainFragment1 fragment = (MainFragment1) mCurrentFragment;
-            if(fragment == null) return;
-            AMap aMap = fragment.getAMap();
-            if(aMap == null) return;
-            MultiPointOverlayOptions overlayOptions = new MultiPointOverlayOptions();
-            overlayOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                    .decodeResource(getResources(), R.mipmap.ic_launcher_round)));//设置图标
-            overlayOptions.anchor(0.5f, 0.5f); //设置锚点
-            MultiPointOverlay multiPointOverlay = aMap.addMultiPointOverlay(overlayOptions);
-            List<PoiItem> poiItems = poiResult.getPois();
-            List<MultiPointItem> list = new ArrayList<>();
-            for (int i = 0; i < poiItems.size(); i++) {
-                //创建MultiPointItem存放，海量点中某单个点的位置及其他信息
-                MultiPointItem multiPointItem = new MultiPointItem(
-                        new LatLng(poiItems.get(i).getLatLonPoint().getLatitude(), poiItems.get(i).getLatLonPoint().getLongitude()));
-                list.add(multiPointItem);
-            }
-            multiPointOverlay.setItems(list);//将规范化的点集交给海量点管理对象设置，待加载完毕即可看到海量点信息
-        }
-    }
-
-
-    @Override
-    public void onPoiItemSearched(PoiItem poiItem, int i) {
-
-    }
-
-    @Override
-    public void onGetInputtips(List<Tip> list, int j) {
-        String[] inputtips = new String[list.size()];
-        for(int i = 0; i < list.size(); i++){
-            inputtips[i] = list.get(i).getAddress();
-        }
-        LogUtil.d("suggestion == " + inputtips);
-        mSearchView.setSuggestions(inputtips);
     }
 }
