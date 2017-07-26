@@ -100,4 +100,6 @@ dependencies {
     compile project(':recyclerview_gallery')
     //卡片滑动
     compile project(':card_slide')
+    //高德定位
+    compile files('libs/AMap_Location_V3.4.0_20170427.jar')
 }

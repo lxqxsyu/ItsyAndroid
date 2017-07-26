@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.guohe.ltsyandroid.CustomeApplication;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.util.LogUtil;
@@ -125,7 +126,8 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected void initData() {
-
+        //启动定位
+        CustomeApplication.getApplication().mLocationClient.startLocation();
     }
 
     /**
