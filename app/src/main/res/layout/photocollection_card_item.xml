@@ -23,17 +23,17 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="400dip"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         app:cardCornerRadius="8dp"
         app:cardElevation="6dp"
         app:cardMaxElevation="12dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="false">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/card_imageview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="400dip"
             app:actualImageScaleType="centerCrop"
             app:placeholderImage="@drawable/default_placeholder"/>
 

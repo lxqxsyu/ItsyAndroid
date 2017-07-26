@@ -13,8 +13,6 @@ import com.view.jameson.library.CardAdapterHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import jameson.io.library.util.ToastUtils;
-
 /**
  * Created by shuihan on 2017/7/26.
  */
@@ -36,13 +34,13 @@ public class CollectionCardAdapter extends RecyclerView.Adapter<CollectionCardAd
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         mCardAdapterHelper.onBindViewHolder(holder.itemView, position, getItemCount());
-        FrescoUtils.loadRes(holder.mImageView, mList.get(position), null, 0, 0, null);
-        holder.mImageView.setOnClickListener(new View.OnClickListener() {
+        FrescoUtils.loadRes(holder.cardImageView, mList.get(position), null, 0, 0, null);
+        holder.cardImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToastUtils.show(holder.mImageView.getContext(), "" + position);
+                //ToastUtils.show(holder.mImageView.getContext(), "" + position);
             }
         });
     }
@@ -53,11 +51,11 @@ public class CollectionCardAdapter extends RecyclerView.Adapter<CollectionCardAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final SimpleDraweeView mImageView;
+        public SimpleDraweeView cardImageView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            mImageView = (SimpleDraweeView) itemView.findViewById(R.id.card_image_view);
+            cardImageView = (SimpleDraweeView) itemView.findViewById(R.id.card_imageview);
         }
 
     }
