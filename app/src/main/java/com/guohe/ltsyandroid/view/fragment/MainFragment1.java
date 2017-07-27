@@ -30,8 +30,8 @@ public class MainFragment1 extends BaseMainFragment{
     private List<CardDataItem> dataList = new ArrayList<>();
 
     private int imagePaths[] = {R.mipmap.test_img, R.mipmap.test_imag2, R.mipmap.test_image3,
-        R.mipmap.test_image4, R.mipmap.test_image5, R.mipmap.test_image6,
-        R.mipmap.test_image7}; // 12个图片资源
+        R.mipmap.test_image4, R.mipmap.test_image6, R.mipmap.test_image7,
+        R.mipmap.test_image3}; // 12个图片资源
 
     private String names[] = {"郭富城", "刘德华", "张学友",
             "李连杰", "成龙", "谢霆锋",
