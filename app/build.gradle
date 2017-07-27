@@ -74,8 +74,6 @@ dependencies {
     //SmartTabLayout
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
-    //高德地图
-    compile files('libs/AMap3DMap_5.2.1_AMapNavi_5.2.1_AMapSearch_5.2.1_AMapLocation_3.4.1_20170710.jar')
     //搜索框
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'com.github.arimorty:floatingsearchview:2.1.1'
@@ -98,4 +96,10 @@ dependencies {
     compile project(':colorful')
     //录制声音
     compile project(':audio_recorder')
+    //RecyclerView 幻灯片
+    compile project(':recyclerview_gallery')
+    //卡片滑动
+    compile project(':card_slide')
+    //高德定位
+    compile files('libs/AMap_Location_V3.4.0_20170427.jar')
 }

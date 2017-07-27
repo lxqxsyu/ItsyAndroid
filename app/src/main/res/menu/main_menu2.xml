@@ -11,7 +11,7 @@
 
        <item
            android:id="@+id/action_type"
-           android:icon="@drawable/ic_insert_photo_24px"
+           android:icon="@mipmap/ic_insert_photo_white_24dp"
            android:orderInCategory="100"
            android:title="作品"
            app:showAsAction="always" />
