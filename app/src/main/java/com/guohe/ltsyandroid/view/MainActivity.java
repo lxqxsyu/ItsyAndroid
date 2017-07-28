@@ -149,6 +149,7 @@ public class MainActivity extends BaseActivity{
             BaseMainFragment fragment = getFragmentInstance();
             fragment.setUserVisibleHint(true);
             fragmentTransaction.show(fragment);
+            fragment.onChoosed();
         }
         fragmentTransaction.commit();
         changeActionBar();

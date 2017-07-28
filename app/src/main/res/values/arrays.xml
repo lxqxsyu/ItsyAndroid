@@ -3,18 +3,19 @@
 
     <string-array name="photo_category">
 
-        <item>旅行</item>
         <item>人物</item>
-        <item>生活</item>
-        <item>街景</item>
         <item>风光</item>
-        <item>儿童</item>
+        <item>建筑</item>
+        <item>静物</item>
+        <item>纪实</item>
+        <item>艺术</item>
         <item>运动</item>
         <item>动物</item>
-        <item>航拍</item>
+        <item>生态</item>
         <item>美食</item>
         <item>纪实</item>
-        <item>其它</item>
+        <item>体育</item>
+        <item>其他</item>
 
     </string-array>
 
