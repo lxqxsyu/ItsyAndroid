@@ -33,8 +33,8 @@ public class MainFragment1 extends BaseMainFragment{
         R.mipmap.test_image4, R.mipmap.test_image6, R.mipmap.test_image7,
         R.mipmap.test_image3}; // 12个图片资源
 
-    private String names[] = {"郭富城", "刘德华", "张学友",
-            "李连杰", "成龙", "谢霆锋",
+    private String names[] = {"秋天的校园", "别样的梅花", "蝴蝶",
+            "小虫虫的故事", "成龙", "谢霆锋",
             "梁朝伟"}; // 12个人名
 
     @Override
