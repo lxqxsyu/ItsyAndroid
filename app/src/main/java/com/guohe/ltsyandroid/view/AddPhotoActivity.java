@@ -210,7 +210,7 @@ public class AddPhotoActivity extends BaseActivity implements View.OnClickListen
                             .showWarning();
                     return;
                 }
-                //PhotoExifActivity.startActivity(this, mPhotoExifs);
+                PhotoExifActivity.startActivity(this, mPhotoExifs);
                 break;
             case R.id.addphoto_address:
                 AddPhotoAddressActivity.startActivity(this);
