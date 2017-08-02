@@ -2,6 +2,7 @@ package com.guohe.ltsyandroid.view.fragment;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
+import com.guohe.ltsyandroid.custome.WeakRefrenceHandler;
 import com.guohe.ltsyandroid.util.FrescoUtils;
 import com.guohe.ltsyandroid.util.LogUtil;
 import com.stone.card.library.CardAdapter;
@@ -26,8 +28,23 @@ import java.util.List;
 
 public class MainFragment1 extends BaseMainFragment{
 
+    private static final int HAND_TIP_TIME_COUNT = 0x0021;
+
     private CardSlidePanel.CardSwitchListener mCardSwitchListener;
     private List<CardDataItem> dataList = new ArrayList<>();
+    private TextView mTipContent;
+    private TextView mTipAuthor;
+
+    private WeakRefrenceHandler<MainFragment1> mHandler = new WeakRefrenceHandler<MainFragment1>(this) {
+        @Override
+        protected void handleMessage(MainFragment1 ref, Message msg) {
+            switch (msg.what){
+                case HAND_TIP_TIME_COUNT:
+                    tipNext();
+                    break;
+            }
+        }
+    };
 
     private int imagePaths[] = {R.mipmap.test_img, R.mipmap.test_imag2, R.mipmap.test_image3,
         R.mipmap.test_image4, R.mipmap.test_image6, R.mipmap.test_image7,
@@ -61,10 +78,20 @@ public class MainFragment1 extends BaseMainFragment{
     @Override
     protected void initData() {
 
+
+
+        mHandler.sendEmptyMessage(HAND_TIP_TIME_COUNT);
+    }
+
+    private void tipNext(){
+        //mTipContent.setText();
+        mHandler.sendEmptyMessageDelayed(HAND_TIP_TIME_COUNT, 3000);
     }
 
     @Override
     protected void initView(View view) {
+        mTipContent = getView(R.id.main_tip_content);
+        mTipAuthor = getView(R.id.main_tip_author);
         final CardSlidePanel slidePanel = (CardSlidePanel) getView(R.id.image_slide_panel);
         // 左右滑动监听
         mCardSwitchListener = new CardSlidePanel.CardSwitchListener() {
