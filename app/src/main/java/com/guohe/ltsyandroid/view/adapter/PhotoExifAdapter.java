@@ -2,12 +2,9 @@ package com.guohe.ltsyandroid.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.guohe.ltsyandroid.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +25,10 @@ public class PhotoExifAdapter extends RecyclerView.Adapter<PhotoExifAdapter.Phot
 
     @Override
     public PhotoExifViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new PhotoExifViewHolder(LayoutInflater.from(mContext)
-                .inflate(R.layout.item_photo_exif_list, parent, false));
+        /*return new PhotoExifViewHolder(LayoutInflater.from(mContext)
+                .inflate(R.layout.item_photo_exif_list, parent, false));*/
+
+        return null;
     }
 
     @Override
@@ -54,8 +53,8 @@ public class PhotoExifAdapter extends RecyclerView.Adapter<PhotoExifAdapter.Phot
         private TextView mExifValue;
         public PhotoExifViewHolder(View itemView) {
             super(itemView);
-            mExifKey = (TextView) itemView.findViewById(R.id.photo_exif_key);
-            mExifValue = (TextView) itemView.findViewById(R.id.photo_exif_value);
+           /* mExifKey = (TextView) itemView.findViewById(R.id.photo_exif_key);
+            mExifValue = (TextView) itemView.findViewById(R.id.photo_exif_value);*/
         }
     }
 }

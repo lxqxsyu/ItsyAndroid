@@ -21,6 +21,7 @@ import com.stone.card.library.CardSlidePanel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by 水寒 on 2017/7/14.
@@ -32,8 +33,18 @@ public class MainFragment1 extends BaseMainFragment{
 
     private CardSlidePanel.CardSwitchListener mCardSwitchListener;
     private List<CardDataItem> dataList = new ArrayList<>();
+    private List<TipMessageBean> mTips = new ArrayList<>();
+    private TextView mTipTitle;
     private TextView mTipContent;
-    private TextView mTipAuthor;
+    private int mCurrentTipIndex;
+
+    private int imagePaths[] = {R.mipmap.test_img, R.mipmap.test_imag2, R.mipmap.test_image3,
+        R.mipmap.test_image4, R.mipmap.test_image6, R.mipmap.test_image7,
+        R.mipmap.test_image3}; // 12个图片资源
+
+    private String names[] = {"秋天的校园", "别样的梅花", "蝴蝶",
+            "小虫虫的故事", "成龙", "谢霆锋",
+            "梁朝伟"}; // 12个人名
 
     private WeakRefrenceHandler<MainFragment1> mHandler = new WeakRefrenceHandler<MainFragment1>(this) {
         @Override
@@ -45,14 +56,6 @@ public class MainFragment1 extends BaseMainFragment{
             }
         }
     };
-
-    private int imagePaths[] = {R.mipmap.test_img, R.mipmap.test_imag2, R.mipmap.test_image3,
-        R.mipmap.test_image4, R.mipmap.test_image6, R.mipmap.test_image7,
-        R.mipmap.test_image3}; // 12个图片资源
-
-    private String names[] = {"秋天的校园", "别样的梅花", "蝴蝶",
-            "小虫虫的故事", "成龙", "谢霆锋",
-            "梁朝伟"}; // 12个人名
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,8 +80,22 @@ public class MainFragment1 extends BaseMainFragment{
 
     @Override
     protected void initData() {
+        TipMessageBean tip1 = new TipMessageBean(0, "这是一个系统的测试消息");
+        TipMessageBean tip2 = new TipMessageBean(1, "马丁•帕尔", "不要让照片上的人保持微笑状态，除非你只想拍快照", "");
+        TipMessageBean tip3 = new TipMessageBean(2, "马丁•帕尔", "当你拍摄他人的时候，越靠近越好", "");
+        TipMessageBean tip4 = new TipMessageBean(3, "马丁•帕尔", "选择合适的拍摄环境，我的意思是仅仅适合于拍摄对象的拍摄环境", "");
+        TipMessageBean tip5 = new TipMessageBean(4, "马丁•帕尔", "然后，不要让他们笑了，这是业余拍摄者拍摄的最大误区", "");
+        TipMessageBean tip6 = new TipMessageBean(5, "马丁•帕尔", "对于偷拍，只要你锲而不舍，幸运女神总会降临的", "");
 
+        mTips.add(tip1);
+        mTips.add(tip2);
+        mTips.add(tip3);
+        mTips.add(tip4);
+        mTips.add(tip5);
+        mTips.add(tip6);
 
+        mCurrentTipIndex = new Random().nextInt(mTips.size());
+        showNextTip();
 
         mHandler.sendEmptyMessage(HAND_TIP_TIME_COUNT);
     }
@@ -90,8 +107,8 @@ public class MainFragment1 extends BaseMainFragment{
 
     @Override
     protected void initView(View view) {
-        mTipContent = getView(R.id.main_tip_content);
-        mTipAuthor = getView(R.id.main_tip_author);
+        mTipTitle = getView(R.id.tip_title);
+        mTipContent = getView(R.id.tip_content);
         final CardSlidePanel slidePanel = (CardSlidePanel) getView(R.id.image_slide_panel);
         // 左右滑动监听
         mCardSwitchListener = new CardSlidePanel.CardSwitchListener() {
@@ -163,6 +180,23 @@ public class MainFragment1 extends BaseMainFragment{
                 slidePanel.getAdapter().notifyDataSetChanged();
             }
         });*/
+    }
+
+    private void showNextTip(){
+        if(mTipContent == null) return;
+        mCurrentTipIndex++;
+        if(mCurrentTipIndex >= mTips.size()){
+            mCurrentTipIndex = 0;
+        }
+        TipMessageBean tipBean = mTips.get(mCurrentTipIndex);
+        mTipTitle.setText(tipBean.getTipTitle());
+        mTipContent.setText(tipBean.getTipContent());
+    }
+
+    @Override
+    public void onChoosed() {
+        if(mTips.isEmpty()) return;
+        showNextTip();
     }
 
     private void prepareDataList() {

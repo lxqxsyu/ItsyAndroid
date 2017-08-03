@@ -11,4 +11,8 @@ import com.guohe.ltsyandroid.view.base.BaseFragment;
 public abstract class BaseMainFragment extends BaseFragment {
 
     public abstract void attachActionBarView(View actionbarView);
+
+    public void onChoosed(){
+
+    }
 }
