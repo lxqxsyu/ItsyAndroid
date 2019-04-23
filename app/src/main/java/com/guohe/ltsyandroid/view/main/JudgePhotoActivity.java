@@ -31,7 +31,7 @@ import java.util.Random;
  * 附近的照片
  */
 
-public class NearbyPhotoActivity extends BaseActivity{
+public class JudgePhotoActivity extends BaseActivity{
 
     private static final int HAND_TIP_TIME_COUNT = 0x0021;
     private static final int TIP_DELAY_TIME = 6000;   //tip间隔6000ms
@@ -51,9 +51,9 @@ public class NearbyPhotoActivity extends BaseActivity{
             "小虫虫的故事", "成龙", "谢霆锋",
             "梁朝伟"}; // 12个人名
 
-    private WeakRefrenceHandler<NearbyPhotoActivity> mHandler = new WeakRefrenceHandler<NearbyPhotoActivity>(this) {
+    private WeakRefrenceHandler<JudgePhotoActivity> mHandler = new WeakRefrenceHandler<JudgePhotoActivity>(this) {
         @Override
-        protected void handleMessage(NearbyPhotoActivity ref, Message msg) {
+        protected void handleMessage(JudgePhotoActivity ref, Message msg) {
             switch (msg.what){
                 case HAND_TIP_TIME_COUNT:
                     tipNext();
@@ -108,7 +108,7 @@ public class NearbyPhotoActivity extends BaseActivity{
             @Override
             public void onCardVanish(int index, int type) {
                 if(type == 0){
-                    PhotoDetailActivity.startActivity(NearbyPhotoActivity.this);
+                    PhotoDetailActivity.startActivity(JudgePhotoActivity.this);
                 }
                 LogUtil.d( "正在消失-" + dataList.get(index).userName + " 消失type=" + type);
             }
@@ -132,11 +132,11 @@ public class NearbyPhotoActivity extends BaseActivity{
             @Override
             public void bindView(View view, int index) {
                 Object tag = view.getTag();
-                NearbyPhotoActivity.ViewHolder viewHolder;
+                JudgePhotoActivity.ViewHolder viewHolder;
                 if (null != tag) {
-                    viewHolder = (NearbyPhotoActivity.ViewHolder) tag;
+                    viewHolder = (JudgePhotoActivity.ViewHolder) tag;
                 } else {
-                    viewHolder = new NearbyPhotoActivity.ViewHolder(view);
+                    viewHolder = new JudgePhotoActivity.ViewHolder(view);
                     view.setTag(viewHolder);
                 }
 
@@ -274,7 +274,7 @@ public class NearbyPhotoActivity extends BaseActivity{
     }
 
     public static void startActivity(Context context){
-        Intent intent = new Intent(context, NearbyPhotoActivity.class);
+        Intent intent = new Intent(context, JudgePhotoActivity.class);
         context.startActivity(intent);
     }
 }

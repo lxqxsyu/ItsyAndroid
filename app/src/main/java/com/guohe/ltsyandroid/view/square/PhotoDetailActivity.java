@@ -1,4 +1,4 @@
-package com.guohe.ltsyandroid.view;
+package com.guohe.ltsyandroid.view.square;
 
 import android.content.Context;
 import android.content.Intent;
@@ -100,10 +100,10 @@ public class PhotoDetailActivity extends BaseActivity implements View.OnClickLis
         params.setMargins(12, 12, 12, 12);
         genTag();
 
-        TextView textView = getView(R.id.test_xiaozhuan);
+        //TextView textView = getView(R.id.test_xiaozhuan);
         Typeface typeFace5 = Typeface.createFromAsset(getAssets(), "fonts/STXINGKA.TTF");
-        textView.setTypeface(typeFace5);
-        textView.setText("李小强  ABCD  abcdefgh  1324343543");
+        //textView.setTypeface(typeFace5);
+        //textView.setText("李小强  ABCD  abcdefgh  1324343543");
     }
 
     private void genTag() {

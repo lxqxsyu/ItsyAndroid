@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:id="@+id/ivTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-25dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_top_tishixinxi" />
+        <RelativeLayout
+            android:id="@+id/reLayoutContent"
+            android:layout_width="300dp"
+            android:layout_height="260dp"
+            android:layout_below="@+id/ivTop"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/bg_common_dialog_tran_s"
+            android:minHeight="220dip">
+
+            <LinearLayout
+                android:id="@+id/topLin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="title"
+                    android:textColor="#44400e"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/devider"
+                android:layout_below="@+id/topLin"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!--<ScrollView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:maxHeight="400dp"-->
+                <!--android:scrollbarSize="4dip"-->
+                <!--android:scrollbarThumbVertical="@drawable/bg_scrollbar"-->
+                <!--android:smoothScrollbar="true">-->
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_view_skills_left"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/icon_view_skills_right"
+                    android:paddingBottom="20dip"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:text="message"
+                    android:textColor="#e5061f"
+                    android:textSize="15sp" />
+                <!--</ScrollView>-->
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/devider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_above="@+id/bottomLin"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@mipmap/bg_dialog_devider" />
+
+            <RelativeLayout
+                android:id="@+id/bottomLin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/negativeButton"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@mipmap/btn_common"
+                    android:singleLine="true"
+                    android:stateListAnimator="@null"
+                    android:text="取消"
+                    android:textColor="#2B2B2B"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+
+                <Button
+                    android:id="@+id/positiveButton"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/btn_common_blue"
+                    android:singleLine="true"
+                    android:stateListAnimator="@null"
+                    android:text="确定"
+                    android:textColor="#2B2B2B"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -11,7 +11,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.util.DimenUtil;
 import com.guohe.ltsyandroid.util.FrescoUtils;
-import com.guohe.ltsyandroid.view.PhotoDetailActivity;
+import com.guohe.ltsyandroid.view.square.PhotoDetailActivity;
 import com.wou.commonutils.ScreenSizeUtil;
 
 /**

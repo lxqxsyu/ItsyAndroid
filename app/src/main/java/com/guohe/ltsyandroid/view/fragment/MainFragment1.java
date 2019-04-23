@@ -14,6 +14,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.guohe.ltsyandroid.MvpPresenter;
 import com.guohe.ltsyandroid.R;
 import com.guohe.ltsyandroid.custome.WeakRefrenceHandler;
+import com.guohe.ltsyandroid.model.entry.TipMessageBean;
 import com.guohe.ltsyandroid.util.FrescoUtils;
 import com.guohe.ltsyandroid.util.LogUtil;
 import com.stone.card.library.CardAdapter;
@@ -107,8 +108,8 @@ public class MainFragment1 extends BaseMainFragment{
 
     @Override
     protected void initView(View view) {
-        mTipTitle = getView(R.id.tip_title);
-        mTipContent = getView(R.id.tip_content);
+        mTipTitle = getView(R.id.main_tip_author);
+        mTipContent = getView(R.id.main_tip_content);
         final CardSlidePanel slidePanel = (CardSlidePanel) getView(R.id.image_slide_panel);
         // 左右滑动监听
         mCardSwitchListener = new CardSlidePanel.CardSwitchListener() {
