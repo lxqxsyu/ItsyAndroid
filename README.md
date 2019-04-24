@@ -4,13 +4,13 @@
 
 ## 界面介绍
 
-![闪屏界面](image/splash.jpg)
+<img src="image/splash.jpg" width=500 alt="闪屏界面" title="闪屏界面" />
 
-![首页](image/home.jpg)
+<img src="image/home.jpg" width=500 alt="首页" title="首页" />
 
-![动态](image/dongtai.jpg)
+<img src="image/dongtai.jpg" width=500 alt="动态" title="动态" />
 
-![榜单](image/bangdan.jpg)
+<img src="image/bangdan.jpg" width=500 alt="榜单" title="榜单" />
 
-![我的](image/me.jpg)
+<img src="image/me.jpg" width=500 alt="我的" title="我的" />
 
