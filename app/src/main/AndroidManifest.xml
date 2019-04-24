@@ -155,6 +155,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionbarTheme"/>
 
+        <activity android:name=".view.square.PhotoDetailActivity"
+            android:screenOrientation="portrait"/>
+
         <!--高德地图-->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="34a05e779c0571897e8000363f8e68d2">
             //开发者申请的key
