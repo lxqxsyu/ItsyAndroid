@@ -110,17 +110,25 @@ view目录
 
 <img src="image/splash.jpg" width=500 alt="闪屏界面" title="闪屏界面" />
 
+----
+
 首页可以左右滑动查看图片，并支持筛选和搜索
 
 <img src="image/home.jpg" width=500 alt="首页" title="首页" />
+
+----
 
 动态可以更换列表展示样式，并安装附近、已关注、最新、最热、全部分类查看
 
 <img src="image/dongtai.jpg" width=500 alt="动态" title="动态" />
 
+----
+
 榜单可以按照关注、赞赏、图集、摄影比赛来排列
 
 <img src="image/bangdan.jpg" width=500 alt="榜单" title="榜单" />
+
+----
 
 上传作品、我的相关设置和一些其他个人相关信息
 
